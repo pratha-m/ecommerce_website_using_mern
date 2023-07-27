@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+*{
+    margin: 0;
+    padding:0;
+}    
+.createAccountOtpFormContainer1{
+    height:65vh;
+    width:100%;
+    background-color:rgb(190, 190, 182);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}    
+.otpFormDiv1{
+    height:35vh;
+    width:380px;
+    background-color:#d7d7d7;
+    border-radius:10px;
+}
+.otpTextDiv1{
+    height:30%;
+    /* background-color: rgb(153, 119, 119); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size:20px;
+}
+.text11{
+    font-size:20px;
+}
+.text2EmailOfPerson1 a{
+    text-decoration: none;
+    font-size:18px;
+}
+.otpFormDiv1{
+    height:70%;
+    width:40%;
+    /* background-color:brown; */
+}
+.otpForm1{
+    height:100%;
+    width:100%;
+    /* background-color: chartreuse; */
+}
+.otpInputDiv1{
+    height:45%;
+    width:100%;
+    /* background-color: cornflowerblue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.otpInnerFormDiv{
+    height: 60%;
+    width: 100%;
+}
+.otpInput1{
+    height:70%;
+    width:93%;
+    /* background-color: red; */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.otpInputTag1{
+    height:100%;
+    width:100%;
+    font-size:25px;
+    border-radius:10px;
+    border:none;
+}
+.otpInputTag:focus{
+    outline: none;
+}
+.otpInputTag:hover{
+    border-style: solid;
+    border-color:gold;
+    box-shadow:1px 1px 5px gold;
+}
+.createAccountButtonDiv1{
+    height:50%;
+    width:100%;
+    /* background-color:coral; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.createAccountButton1{
+    height:100%;
+    width:100%;
+    /* background-color:pink; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.createAccountButtonTag1{
+    height:65%;
+    width:50%;
+    border-radius:50px;
+    border: none;
+    font-size:20px;
+    color: white;
+    background-color:#506a50;
+    cursor: pointer;
+}
+.createAccountButtonTag:hover{
+    background-color:#5f865f;
+}
+
+/* media queries */
+@media(max-width:393px){
+    .otpFormDiv1{
+    height:35vh;
+    width:340px;
+    background-color:#d7d7d7;
+    border-radius:10px;
+    }
+}
+@media(max-width:355px){
+    .otpFormDiv1{
+    height:35vh;
+    width:300px;
+    background-color:#d7d7d7;
+    border-radius:10px;
+    }
+    .createAccountButtonTag1{
+    height:65%;
+    width:55%;
+    border-radius:50px;
+    border: none;
+    font-size:20px;
+    color: white;
+    background-color:#506a50;
+    cursor: pointer;
+    }
+}
+@media(max-width:311px){
+    .otpFormDiv1{
+    width:270px;
+    }
+    .createAccountButtonTag1{
+    font-size:18px;
+    }
+    .text11{
+    font-size:17px;
+    }
+    .text2EmailOfPerson1 a{
+    font-size:14px;
+    }
+}
+@media(max-width:274px){
+    .otpFormDiv1{
+    width:240px;
+    }
+    .createAccountButtonTag1{
+    font-size:15px;
+    }
+    .text11{
+    font-size:14px;
+    }
+    .text2EmailOfPerson1 a{
+    font-size:12px;
+    }
+}

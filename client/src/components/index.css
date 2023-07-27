@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.navigationContainer{
+   height:25vh;
+   width:100%;
+   background-color:rgb(234 234 234);
+   position:sticky;
+   top:0;
+   z-index: 5;
+}
+.allCategoriesBox{
+    height:30vh;
+    width:100%;
+    /* background-color: chartreuse; */
+    /* background-color: rgb(234 234 234); */
+    display: flex;
+    }
+.eachProduct{
+    height:85%;
+    width:20%;
+    /* background-color:blue; */
+    background-color:rgb(234 234 234);
+    margin:10px 10px;
+    display:flex;
+    flex-direction:column;
+}
+
+.eachProductImageBox{
+    height:70%;
+    width:100%;
+    background-color:rgb(234 234 234);
+}
+.eachProductTextBox{
+    height:30%;
+    width:100%;
+    /* background-color:red; */
+    background-color: rgb(234 234 234);
+}
+
+@media(max-width:883px){
+    .eachProductTextBox a{
+        font-size:1rem;
+    }   
+}
+@media(max-width:790px){
+    .allCategoriesBox{
+        height:20vh;
+    }
+    .eachProduct{
+        height:80%;
+    }   
+}
+@media(max-width:640px){
+    .allCategoriesBox{
+        height:15vh;
+    }
+    .eachProduct{
+        height:70%;
+    }   
+}
+@media(max-width:533px){
+    .eachProductTextBox a{
+        font-size:0.7rem;
+    }
+}
+
+.ImageSliderBox{
+   height:45vh;
+   width:100%;
+   background-color:green;
+   animation-name:imageSlider;
+   animation-duration:10s;
+   /* animation-iteration-count:infinite; */
+   animation-fill-mode:forwards;
+}
+@keyframes imageSlider{
+    0%{background-image:url(https://rukminim1.flixcart.com/fk-p-flap/844/140/image/48f20419e2eb62ce.jpg?q=50);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;       
+    }
+    25%{background-image:url(https://rukminim1.flixcart.com/fk-p-flap/844/140/image/48f20419e2eb62ce.jpg?q=50);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    50%{background-image:url(https://rukminim1.flixcart.com/fk-p-flap/844/140/image/48f20419e2eb62ce.jpg?q=50);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    75%{background-image:url(https://rukminim1.flixcart.com/fk-p-flap/844/140/image/48f20419e2eb62ce.jpg?q=50);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+     100%{background-image:url(https://rukminim1.flixcart.com/fk-p-flap/844/140/image/48f20419e2eb62ce.jpg?q=50);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    } 
+}
+.sliderButtonsContainer{
+    position: absolute;
+    height:60px;
+    width:100%;
+    /* background-color: black; */
+    transform: translateY(300%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sliderButtonsContainer .sliderButtonsBox{
+    height: 60px;
+    width:100px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.eachButton{
+    height:15px;
+    width: 15px;
+    background-color:rgb(255 231 231 59%);
+    margin: 5px;
+    border-radius:50%;
+}
+.productsContainer{
+    position: relative;
+    min-height:311px;
+    width:100%;
+    background-color:white;
+    padding-top:30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.footer{
+    position:relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:#f1f3f6;
+    color: black;
+    text-align: center;
+    height:10vh;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+}
+.upperNavbar{
+  /* background-color: red; */
+  height:15vh;
+  width:100%;
+  display:flex;
+}
+.websiteLogoContainer{
+    height:15vh;
+    width:8rem;
+    /* background-color: yellow; */
+    background-image: url(../../public/images/logo.png);
+    background-position:center;
+    background-size:contain;
+    background-repeat:no-repeat;
+    cursor:pointer;
+}
+.otherOptionsDiv{
+    height:15vh;
+    width:92%;
+    /* background-color: darkcyan; */
+    display: flex;
+    justify-content:flex-end;
+    position: relative;
+    align-items: center;
+}
+.moreOptions{
+  /* background-color: chartreuse; */
+  height: 60px;
+  display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   right:3rem;
+   width: 200px;
+   color: white;
+   font-size:23px;
+   font-weight: bold;
+   z-index: 4;
+   cursor: pointer;
+}
+.moreOptions>button{
+    border: none;
+    padding:8px 30px;
+    color: white;
+    cursor: pointer;
+    background-color: gray;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50px;
+}
+.loginBtnBackground{
+    background-color: rgb(120, 233, 120);
+}
+/* .arrowUpOrDown{
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+    background-image:url(../../public/images/arrow_down.png); 
+    background-position: center;
+} */
+.moreOptionsSubmenu{
+    height: max-content;
+    width: 200px;
+    position: absolute;
+    background:white;
+    top: 75%;
+    right: 3.6rem;
+    z-index: 3;
+    box-shadow:0.5px 0.5px 10px rgb(131, 110, 110);
+    display: none;
+    border-radius: 20px;
+}
+.moreOptionsAndSubmenu:hover .moreOptionsSubmenu{
+   display: block;   
+}
+.moreOptionsAndSubmenu:hover .arrowUpOrDown{
+    background-image: url(../../public/images/arrow_up.png);
+} 
+.wishlistNo{
+    width: 73px;
+    /* background-color: blue; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wishlistNo .innerNoWishlist{
+    background-color: antiquewhite;
+    width: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eachSubmenuOption{
+    height:50px;
+    display: flex;
+    align-items: center;
+}
+.eachSubmenuOption a{
+    text-decoration: none;
+    color: black;
+}
+.eachSubmenuOption .submenuIcons{
+    height: 30px;
+    width: 30px;
+    margin:20px;
+}
+.locationImage{
+    height: 30px;
+    width: 20px;
+    margin:30px;
+}
+.ReferImage{
+    height: 40px;
+    width: 40px;
+    margin:10px;
+}
+.DownloadImage{
+    height: 40px;
+    width: 30px;
+    margin:20px;
+}
+.eachSubmenuOption:hover{
+    background-color:#cfcfff;
+    cursor: pointer;
+}
+.lowerNavbar{
+    height:10vh;
+    width:100%;
+    /* background-color:brown; */
+}
+.searchAndCart{
+    height:100%;
+    width:100%;
+    /* background-color: burlywood; */
+    display: flex;
+}
+.searchContainer{
+  height:100%;
+  width:90%;
+  /* background-color: chocolate; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchBar{
+    height:5vh;
+    width:98%;
+    /* background-color: green; */
+    margin:5px auto;
+    border-radius:50px;
+    display: flex;
+}
+.searchInputDiv{
+    height:100%;
+    width:97%;
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:50px 0 0 50px;
+
+}
+.searchInput{
+    height:100%;
+    width:100%;
+    border-radius:50px 0 0 50px;
+    border: none;
+    font-size: 25px;
+    padding-left:15px;
+}
+.searchInput{
+    outline: none;
+}
+.searchIconContainer{
+    height:100%;
+    width:4rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:0 50px 50px 0;
+}
+/* cart starts */
+.cartContainer{
+    height:100%;
+    width:11rem;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    /* background-color:darkgoldenrod; */
+    color: white;
+    z-index: 2;
+    cursor: pointer;
+}
+.cartTextAndImageDiv{
+    display: flex;
+}
+.cartTextDiv{
+    padding-top:20px;
+    font-weight: bold;
+}
+.cartDiv{
+    display: block;
+    position: relative;
+}
+.zeroDiv{
+    height: 36px;
+    width: 64px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    left: -8px;
+    bottom: 20p;
+    bottom: 32px;
+}
+.zero{
+    background-color: red;
+    font-size: 22px;
+    border-radius: 40px;
+    height: 22px;
+    width: 16px;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* cart ends */
+
+/* product container starts */
+.eachItem{
+    height:40vh;
+    width:255px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    cursor: pointer;
+    border: solid #dadaef;
+    position: relative;
+}
+.eachItem>.addToWishlistButtonDiv{
+    top: 1%;
+    left: 82%;
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    /* border: solid;
+    box-shadow: 1px 1px 2px black; */
+    z-index: 3;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90% 80%;
+}
+.changeToNormalHeart{
+    background-image: url(../../public/images/outline\ heart.png);
+}
+.changeToRedHeartImage{
+    background-image: url(../../public/images/fill\ heart.png);
+}
+.gapContainer{
+    height: 100px;
+    width: 100%;
+    /* background: blue; */
+}
+.eachItemInnerDiv{
+    height:100%;
+    width: 100%;
+    background-color: orange;
+}
+.eachItemImageDiv{
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.eachItemOtherTextDiv{
+    height:50%;
+    width:100%;
+    background-color:white;
+}
+.productName{
+    height: 20%;
+    /* background-color:pink; */
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.stars{
+    height: 15%;
+    width: 100%;
+    z-index: 3;
+    /* background-color:pink; */
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eachStar{
+    height: 90%;
+    width:10%;
+    /* background-color: green; */
+    margin: 3px;
+}
+.star1{
+    background-image:url(../../public/images/filledStar.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.star2{
+    background-image:url(../../public/images/filledStar.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.star3{
+    background-image:url(../../public/images/filledStar.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.star4{
+    background-image:url(../../public/images/halfFilledStar.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.star5{
+    background-image:url(../../public/images/emptysStar.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.dealOfTheDayDiv{
+    height:20%;
+    width:100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 1%;
+   /* background-color: red; */
+}
+.dealOfTheDay{
+  height: 100%;
+  width:80%;
+  border-radius:5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b40095c4;
+  /* color: white; */
+}
+
+.showPrice{
+    font-size:1rem;
+    font-weight: bold;
+    color: red;
+}
+.pricesDiv{
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.cutPrice{
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-decoration: line-through;
+    margin-top:5px;
+    margin-left:5px;
+}
+.savePrice{
+    font-size:1rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.freeDeliveryDiv{
+    height:20%;
+    width: 100%;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader-wrapper{
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

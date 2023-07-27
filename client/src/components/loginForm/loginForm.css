@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+*{
+    margin: 0;
+    padding:0;
+}    
+._log_createAccountOtpFormContainer{
+    height:75vh;
+    width:100%;
+    background-color:rgb(190, 190, 182);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}    
+._log_formDiv{
+    height:50vh;
+    width:380px;
+    background-color:#d7d7d7;
+    border-radius:10px;
+    display: flex;
+    flex-direction: column;
+}
+._log_otpTextDiv{
+    height:20%;
+    /* background-color: rgb(153, 119, 119); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size:20px;
+}
+._log_text1{
+    font-size:50px;
+}
+._log_text2EmailOfPerson a{
+    text-decoration: none;
+    font-size:18px;
+}
+._log_otpFormDiv{
+    height:60%;
+    width:100%;
+    /* background-color:brown; */
+}
+._log_otpForm{
+    height:100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+._log_otpInputDiv{
+    height:45%;
+    width:100%;
+    /* background-color: cornflowerblue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+._log_otpInput{
+    height:70%;
+    width:93%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+._log_otpInputTag{
+    height:100%;
+    width:100%;
+    font-size:25px;
+    border-radius:10px;
+    border:none;
+}
+._log_otpInputTag:focus{
+    outline: none;
+}
+._log_otpInputTag1:hover{
+    border-style: solid;
+    border-color:gold;
+    box-shadow:1px 1px 5px gold;
+}
+._log_passwordInputDiv{
+    height:33%;
+    width:93%;
+    /* background-color: cornflowerblue; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;   
+    border-radius: 10px;
+    margin: auto;
+}
+._log_showPasswordIcon{
+    height:100%;
+    width:20%;
+    background-color: white;
+    border-radius:0px 10px 10px 0px;
+    background-image:url(../../../public/images/show.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60% 40%;
+    cursor:pointer;
+}
+._log_hidePasswordIcon{
+   height:100%;
+    width:20%;
+    background-color: white;
+    border-radius:0px 10px 10px 0px;
+    background-image:url(../../../public/images/hide.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60% 40%;
+    cursor:pointer;
+}
+._log_passwordInputDiv input{
+    border-radius:10px 0px 0px 10px;
+}
+._log_passwordInput{
+    height:100%;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+._log_passwordInputDiv:hover{
+    border-style: solid;
+    border-color:gold;
+    box-shadow:1px 1px 5px gold;
+}
+
+._log_createAccountButtonDiv{
+    height:50%;
+    width:100%;
+    /* background-color:coral; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+._log_createAccountButton{
+    height:100%;
+    width:100%;
+    /* background-color:pink; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+._log_createAccountButtonTag{
+    height:65%;
+    width:50%;
+    border-radius:50px;
+    border: none;
+    font-size:20px;
+    color: white;
+    background-color:#506a50;
+    cursor: pointer;
+}
+._log_createAccountButtonTag:hover{
+    background-color:#5f865f;
+}
+._log_forgotPasswordOptionDiv{
+    height: 10%;
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    padding-left:10px;
+}
+._log_forgotPasswordOptionDiv ._log_forgotPasswordOption a{
+    text-decoration: none;
+}
+._log_signInFormOtherOptions{
+    height:10%;
+    /* background-color: rgb(153, 119, 119); */
+    display: flex;
+    padding-left:10px;
+    align-items: center;
+    font-size:20px;
+}
+._log_createAccountLink a{
+    text-decoration: none;
+    font-size: 15px;
+    margin-left:5px;
+}
+._log_createAccountTextAndLink{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+._log_createAccountText{
+    font-size:19px;
+}
+/* media queries */
+@media(max-width:393px){
+    ._log_formDiv{
+    height:50vh;
+    width:300px;
+    }
+    ._log_createAccountButtonTag{
+    height:70%;
+    width:50%;
+    font-size:16px;
+    }
+    ._log_createAccountLink a{
+    text-decoration: none;
+    font-size: 13px;
+    margin-left:5px;
+    }
+    ._log_createAccountText{
+    font-size:15px;
+    }
+}
+@media(max-width:309px){
+    ._log_formDiv{
+    height:50vh;
+    width:270px;
+    }
+    ._log_createAccountButtonTag{
+    height:70%;
+    width:50%;
+    font-size:16px;
+    }
+    ._log_text1{
+    font-size:40px;
+    }
+    ._log_createAccountLink a{
+    text-decoration: none;
+    font-size: 11px;
+    margin-left:5px;
+    }
+    ._log_createAccountText{
+    font-size:13px;
+    }
+}
+@media(max-width:280px){
+    ._log_formDiv{
+    height:40vh;
+    width:250px;
+    }
+    ._log_createAccountButtonTag{
+    font-size:14px;
+    }
+    ._log_text1{
+    font-size:35px;
+    }
+    ._log_createAccountLink a{
+    font-size: 8px;
+    }
+    ._log_createAccountText{
+    font-size:10px;
+    }
+}
+@media(max-width:256px){
+    ._log_formDiv{
+    height:30vh;
+    width:200px;
+    }
+    ._log_createAccountButtonTag{
+    font-size:10px;
+    }
+    ._log_text1{
+    font-size:30px;
+    }
+    ._log_otpFormDiv{
+    height:65%;
+    }
+    ._log_signInFormOtherOptions{
+    height:15%;
+    font-size:17px;
+    }
+}

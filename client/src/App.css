@@ -1,0 +1,20 @@
+.scrollDiv{
+  overflow-y:scroll ;
+}
+.scrollDiv::-webkit-scrollbar {
+  width: 16px;
+}
+
+.scrollDiv::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  min-height: 50px;
+}
+
+.scrollDiv::-webkit-scrollbar-track, .EHzcec::-webkit-scrollbar-track:hover {
+  background: none;
+  border: none;
+}

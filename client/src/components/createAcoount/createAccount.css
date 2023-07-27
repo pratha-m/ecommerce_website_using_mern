@@ -1,0 +1,236 @@
+.createaccount_createAccountFormContainer{
+    height:100vh;
+    width: 100%;
+    background-color: #8d9494;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.createaccount_createAccountTextAndFormDiv{
+    height:90vh;
+    width:100%;
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+}
+.createaccount_createAccountText{
+    height: 6%;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 32px;
+}
+
+.createaccount_createAccountFormDiv{
+    height: 80%;
+    width:100%;
+    /* background-color: chartreuse; */
+}
+.createaccount_eachInfoDiv{
+    height:18%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: gray; */
+    margin-top:0.5%; 
+}
+.createaccount_continueButtonDiv{  
+    height:18%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    /* background-color: gray; */
+    margin-top:0.5%; 
+}
+.createaccount_ifAlreadyAccountExists{
+    display: flex;
+    align-items: center;
+}
+.createaccount_ifAlreadyAccountExistsText{
+    font-size: 24px;
+}
+.createaccount_ifAlreadyAccountExistsLink a{
+    font-size: 20px;
+    text-decoration:none;
+    margin:10px;
+}
+.createaccount_inputTextDiv{
+ height:90%;
+ width:300px;
+ /* background-color: orange; */
+ display: flex;
+ align-items: center;
+ justify-content:flex-start;
+ font-size:2rem;
+ color: black;
+}
+.createaccount_inputDiv{
+  height:90%;
+ width:60%;
+ /* background-color:brown; */
+ display: flex;
+ align-items: center;
+ justify-content:center;
+}
+.createaccount_inputDiv .createaccount_input{
+    height:65%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+}
+.createaccount_inputDiv .createaccount_input input{
+    height: 100%;
+    width:100%;
+    font-size:20px;
+    border-radius:10px;
+    border: none;
+}
+.createaccount_inputDiv .createaccount_passwordInput input{
+    width:97%;
+    border-radius:10px 0px 0px 10px;
+}
+.createaccount_showPasswordIconDiv{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background-color: white;
+    background-image:url(../../../public/images/show.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width:40px;
+    height:100%;
+    border-radius:0px 10px 10px 0px;
+    cursor: pointer;
+}
+.createaccount_inputDiv .createaccount_input input:focus{
+    outline: none;
+}
+.createaccount_inputDiv .createaccount_input:hover{
+    border-style:solid;
+    border-color:gold;
+    box-shadow:0.5px 0.5px 25px rgb(231, 200, 23);
+    border-radius:10px;
+}
+.createaccount_continueButtonOutDiv{
+  height:70%;
+  width:160px;
+  background-color:green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:50px;
+  color: white;
+  cursor:pointer;
+  font-size:20px;
+}
+.createaccount_continueButtonOutDiv:hover{
+    opacity:0.8;
+    font-weight: bold;
+}
+.createaccount_continueButton{
+    height:100%;
+  width:100%;
+  background-color:green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:50px;
+  color: white;
+  cursor:pointer;
+  font-size:20px;
+  border: none;
+}
+@media(max-width:760px){
+    .createaccount_createAccountText{
+       font-size: 50px;
+    }
+    .createaccount_inputTextDiv{
+        height:90%;
+        width:180px;
+        font-size:1.2rem;
+     }
+     .createaccount_continueButtonOutDiv{
+      height:70%;
+        width:80px;
+         border-radius:30px;
+        font-size:14px;
+     }
+     .createaccount_ifAlreadyAccountExistsText{
+         font-size: 17px;
+     }
+     .createaccount_ifAlreadyAccountExistsLink a{
+         font-size: 16px;
+         margin:5px;
+     }
+     .createaccount_continueButton{
+         height:100%;
+         font-size:16px;
+     }
+}
+@media(max-width:523px){
+    .createaccount_createAccountText{
+       font-size: 50px;
+    }
+    .createaccount_inputTextDiv{
+        height:90%;
+        width:150px;
+        font-size:1rem;
+     }
+     .createaccount_continueButton{
+         height:100%;
+         font-size:13px;
+     }
+}
+@media(max-width:409px){
+    .createaccount_createAccountText{
+       font-size: 40px;
+    }
+    .createaccount_inputTextDiv{
+        height:90%;
+        width:120px;
+        font-size:0.8rem;
+     }
+     .createaccount_continueButtonOutDiv{
+         height:60%;
+         width:70px;
+         border-radius:20px;
+        font-size:9px;
+     }
+     .createaccount_continueButton{
+         height:100%;
+         font-size:13px;
+     }
+     .createaccount_ifAlreadyAccountExistsText{
+         font-size: 10px;
+     }
+     .createaccount_ifAlreadyAccountExistsLink a{
+         font-size: 9px;
+         margin:5px;
+     }
+}
+@media(max-width:317px){
+    .createaccount_createAccountText{
+       font-size: 30px;
+    }
+    .createaccount_inputTextDiv{
+        height:90%;
+        width:110px;
+        font-size:0.7rem;
+     }
+}
+@media(max-width:290px){
+    .createaccount_createAccountText{
+       font-size: 30px;
+    }
+    .createaccount_inputTextDiv{
+        height:90%;
+        width:100px;
+        font-size:0.6rem;
+     }
+}

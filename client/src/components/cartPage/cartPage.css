@@ -1,0 +1,513 @@
+
+.cartPage{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cartPage::-webkit-scrollbar {
+  display: none;
+}
+.cartPageContainer{
+  background-color: blue;
+  height: max-content;
+  width: 97%;
+  display: flex;
+  position:relative;
+  background-color: #f1f3f6;
+  justify-content: space-around;
+  padding:20px 10px;
+}
+.shoppingCartProducts{
+  height:52vh;
+   width:100%;  
+   /* background-color: grey; */
+   background-color: white;
+   max-height:57vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   overflow-y:scroll;
+}
+.shoppingCartProducts::-webkit-scrollbar {
+  width: 16px;
+}
+
+.shoppingCartProducts::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  min-height: 50px;
+}
+
+.shoppingCartProducts::-webkit-scrollbar-track, .EHzcec::-webkit-scrollbar-track:hover {
+  background: none;
+  border: none;
+}
+.billDetails{
+   position:sticky;
+   top:25vh;
+   max-height:50vh;
+   width:20%;
+   /* background-color:red; */
+  background-color: white;
+  box-shadow:1px 1px 2px black;
+}
+.cartProductContainer{
+  height:60%;
+  max-height:60%;
+  width:80%;
+  background-color: white;
+  box-shadow: 1px 1px 2px black;
+  margin: 8px;
+}
+.imageAndStaticText{
+  height:70%;
+  width: 100%;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imageContainer{
+  height:100%;
+  flex: 1;
+  /* background-color: blue; */
+  background-color:white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left:10px;
+  padding-right:10px;
+}
+.imageContainer>img{
+  height:80%;
+}
+.productDetailsTextContainer{
+  height: 100%;
+  flex: 5;
+  /* background-color: orange; */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.productDetailsTextContainer>.productName{
+   flex:3;
+   /* background-color: pink; */
+   background-color: white;
+   display:flex;
+   align-items: center;
+   justify-content: flex-start;
+   padding-left:15px;
+   font-size:23px;
+   cursor: pointer;
+}
+.productDetailsTextContainer>.productName:hover{
+  color: rgb(74, 74, 200);
+}
+.productDetailsTextContainer>.productOtherDetails{
+   flex:2;
+   /* background-color:red; */
+   background-color:white;
+}
+.productDetailsTextContainer>.productPrice{
+   flex: 2;
+   /* background-color: blueviolet; */
+   background-color: white;
+   display:flex;
+   align-items: center;
+   justify-content: flex-start;
+   padding-left:15px;
+   font-size: 23px;
+   color: rgb(177, 149, 149);
+}
+.cartProductAllButtons{
+  height: 30%;
+  /* background-color:rgb(203, 97, 97); */
+  background-color:white;
+  display: flex;
+}
+.cartProductAllButtons>.increaseAndDecreaseProducts{
+  flex:2; 
+  /* background-color: olive; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.cartProductAllButtons>.saveForLaterAndRemoveBtns{
+  flex:7; 
+  /* background-color: chartreuse; */
+}
+.increaseAndDecreaseProducts>.plusBtnDiv,.minusBtnDiv{
+   height:30px;
+   width: 30px;
+   /* background-color:red; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.increaseAndDecreaseProducts>.plusBtnDiv>button{
+   height:100%;
+   width:100%;
+   border:1px solid gray;
+   background-color: white;
+   border-radius:50%;
+   font-size: 25px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
+.increaseAndDecreaseProducts>.plusBtnDiv>button>img{
+  height: 69%;
+  width: 69%;
+}
+.increaseAndDecreaseProducts>.minusBtnDiv>button{
+   height:100%;
+   width:100%;
+   border:1px solid gray;
+   background-color: white;
+   border-radius:50%;
+   font-size: 25px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
+.increaseAndDecreaseProducts>.minusBtnDiv>button>img{
+  height: 70%;
+  width: 70%;
+}
+.increaseAndDecreaseProducts>.noOfProductsInputDiv{
+  height:30px;
+  width:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.increaseAndDecreaseProducts>.noOfProductsInputDiv>input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 20px;
+  border: 1px solid gray;
+}
+.saveForLaterAndRemoveBtns{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.saveForLaterAndRemoveBtns>.saveForLatter{
+  font-size: 21px;
+  flex:3;
+  font-weight:800;
+  cursor: pointer;
+}
+.saveForLaterAndRemoveBtns>.Remove{
+  font-size: 21px;
+  flex:6;
+  font-weight:800;
+  cursor: pointer;
+}
+.saveForLaterAndRemoveBtns>.saveForLatter:hover{
+  color:  rgb(74, 74, 200);
+}
+.saveForLaterAndRemoveBtns>.Remove:hover{
+  color:  rgb(74, 74, 200);
+}
+.placeOrderBtnDiv{
+  height: 80px;
+    position: absolute;
+    width: 100%;
+    background: white;
+    top: 100%;
+    box-shadow: 1px 1px 3px black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.placeOrderBtnDiv>button{
+      position: relative;
+      margin-right: 100px;
+      padding: 15px;
+      border: none;
+      color: white;
+      background: green;
+      font-weight: 700;
+      cursor: pointer;
+}
+.placeOrderBtnDiv>button:hover{
+      background: rgb(112, 172, 112);
+}
+.saveForLater{
+     height: 60px;
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 500;
+      border-style: none none solid none;
+    border-width: 1px;
+    border-color: blue;
+    position:absolute
+}
+.shoppingCartProductsAndPlaceOrderBtn{
+  height: max-content; 
+   width:75%;  
+   /* background-color: grey; */
+   background-color: white;
+   max-height:70vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative
+}
+.shoppingCartProductsNew{
+  height: 52vh;
+  max-height: 80vh;
+  /* background-color: goldenrod; */
+  background-color: white;
+  overflow-y: scroll;
+}
+.shoppingCartProductsNew::-webkit-scrollbar {
+  display: none;
+}
+.shoppingCartProductsNew{
+  -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.gapContainer{
+  height: 10vh;
+}
+
+
+
+/* cart Page New CSS  */
+* {
+  /* box-sizing: border-box; */
+}
+/* html,
+body {
+  background-color: #7EC855;
+  font-family: 'Roboto', sans-serif;
+} */
+*{
+  margin: 0;
+  padding: 0
+}
+.cartProductsContainer{
+  min-height: 63vh;
+}
+.shopping-cart {
+  width: 90%;
+  height: max-content;
+  margin: 10px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 8px rgba(1,3,36,0.5);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  height: 30px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+.totalPrice{
+  height: 30px;
+  justify-content:end;
+  border-bottom-style: none;
+  border-top: 1px solid #E1E8EE;
+} 
+.checkoutDiv{
+  height: 30px;
+  justify-content:end;
+  border-bottom-style: none;
+  border-top-style: none;
+}
+.checkoutDiv button{
+  height: 50px;
+  width: 170px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.checkoutDiv button:hover{
+  background-color: rgba(0, 128, 0, 0.622);
+}
+.item {
+  padding: 20px 30px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+ 
+.item:nth-child(3) {
+  border-top:  1px solid #E1E8EE;
+  border-bottom:  1px solid #E1E8EE;
+}
+.buttons {
+  position: relative;
+  margin-right: 5px;
+  width: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.delete-btn,
+.like-btn {
+  display: inline-block;
+  Cursor: pointer;
+}
+.delete-btn {
+  width: 28px;
+  height: 30px;
+  background: url(../../../public/images/delete\ icon.png) no-repeat center;
+  background-size: contain;
+}
+ 
+.like-btn {
+  background: url(../../../public/images/save.png);
+  width: 28px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.move-to-cart{
+  background-image: url(../../../public/images/movetocart.png);
+}
+.is-active {
+  animation-name: animate;
+  animation-duration: .8s;
+  animation-iteration-count: 1;
+  animation-timing-function: steps(28);
+  animation-fill-mode: forwards;
+}
+ 
+@keyframes animate {
+  0%   { background-position: left;  }
+  50%  { background-position: right; }
+  100% { background-position: right; }
+}
+.image {
+  margin-right: 50px;
+  height: 100%;
+  /* overflow: hidden; */
+    /* border-radius: 15px; */
+}
+.image img{
+  height: 100%;
+  border-radius: 15px;
+} 
+/* Let’s add some basic style to  product name and description. */
+.description {
+  margin-right: 60px;
+  width: 115px;
+}
+ 
+.description span {
+  display: block;
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+ 
+
+.quantity {
+  margin-right: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 30px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+/* For WebKit browsers (e.g., Chrome, Safari) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Removes the default margin */
+}
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+button[class*=btn] {
+  width: 30px;
+  height: 30px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minus-btn img {
+  margin-bottom: 3px;
+  height: 50%;
+}
+.plus-btn img {
+  margin-top: 2px;
+  height: 50%;
+}
+ 
+button:focus,
+input:focus {
+  outline:0;
+}
+.total-price {
+  width: 83px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  .shopping-cart {
+    width: 98%;
+    height: auto;
+    overflow: hidden;
+  }
+  .item {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .image img {
+    width: 50%;
+  }
+  .image,
+  .quantity,
+  .description {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+  .buttons {
+    margin-right: 20px;
+  }
+}
+.loader-wrapper{
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

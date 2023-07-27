@@ -1,0 +1,57 @@
+.eachItemOptionsDiv{
+    position: absolute;
+    height:70px;
+    width: 100%;
+    background-color: rgb(146 134 134 / 94%);
+    top: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.eachItemOptionsDiv>button{
+    background-color:green;
+    border: none;
+    color: white;
+    font-size: 20px;
+    height: 40px;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer;
+    border:1px solid rgb(159, 136, 136);
+    border-radius: 10px;
+}
+.imageRemoveBtn{
+    position: absolute;
+    color: white;
+    background-color: rgb(84, 67, 67);
+    padding: 10px;
+    top:5px;
+    left: 170px;
+    border-radius: 20px;
+    display: none;
+}
+.imageUploadBtn{
+    position: absolute;
+    color: white;
+    background-color: rgb(84, 67, 67);
+    border-radius: 20px;
+    padding:10px 0px 10px 10px;
+    display: none;
+}
+.imageUploadShow{
+    position: absolute;
+    color: white;
+    background-color: rgb(133, 92, 92);
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
+    display: none;
+}
+.loader-wrapper{
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.updatedHeight{
+    min-height: 485px;
+}  

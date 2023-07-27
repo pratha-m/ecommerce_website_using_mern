@@ -1,0 +1,85 @@
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+const studentSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    email:{
+       type:String,
+       required:true
+    },
+    password:{
+        type:String,
+        required:true
+    },
+    admin:{
+        type:Boolean,
+        default:false
+    },
+    cart:[{
+        product:{
+          type:mongoose.Schema.Types.ObjectId,
+          ref:"product"
+        },
+        quantity:{
+            type:Number
+        },
+        initialprice:{
+           type:Number
+        },
+        price:{
+            type:Number
+        },
+        image:{
+            type:String 
+        },
+        name:{
+            type:String
+        }
+    }],
+    saveforlater:[{
+        product:{
+          type:mongoose.Schema.Types.ObjectId,
+          ref:"product"
+        },
+        quantity:{
+            type:Number
+        },
+        price:{
+            type:Number
+        },
+        image:{
+            type:String 
+        },
+        name:{
+            type:String
+        }
+    }],   
+    wishlist:[{
+        product:{
+          type:mongoose.Schema.Types.ObjectId,
+          ref:"product"
+        },
+        price:{
+            type:Number
+        },
+        image:{
+            type:String 
+        },
+        name:{
+            type:String
+        },
+        heart:{
+            type:String
+        }
+    }],
+})
+studentSchema.pre("save",async function(next){
+    if(this.isModified("password")){
+        this.password=await bcrypt.hash(this.password,10);
+    }
+    next();
+})
+const student=new mongoose.model("student",studentSchema);
+export default student;
