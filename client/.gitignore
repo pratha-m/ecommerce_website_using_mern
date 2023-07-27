@@ -1,7 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# REACT_APP_RAZORPAY_KEY_ID=rzp_test_snWSRYhCKfQNs4
-# REACT_APP_BASE_URL=http://localhost:3001
 
 # dependencies
 /node_modules
