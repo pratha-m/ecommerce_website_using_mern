@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "newdev": "nodemon index.js -e js,hbs"
   },
@@ -24,7 +24,6 @@
     "hbs": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "localStorage": "^1.0.4",
-    "mongodb": "^5.7.0",
     "mongoose": "^6.3.4",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.5",
