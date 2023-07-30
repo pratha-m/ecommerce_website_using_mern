@@ -339,7 +339,7 @@ body {
   border: none;
   border-radius: 30px;
   font-size: 20px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .checkoutDiv button:hover{
   background-color: rgba(0, 128, 0, 0.622);
@@ -367,7 +367,7 @@ body {
 .delete-btn,
 .like-btn {
   display: inline-block;
-  Cursor: pointer;
+  /* Cursor: pointer; */
 }
 .delete-btn {
   width: 28px;
@@ -482,7 +482,7 @@ input:focus {
 }
 @media (max-width: 800px) {
   .shopping-cart {
-    width: 98%;
+    width: 90%;
     height: auto;
     overflow: hidden;
   }

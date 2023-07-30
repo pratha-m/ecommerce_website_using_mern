@@ -2,9 +2,9 @@ import product from "../models/Product.js";
 import {v2 as cloudinary} from "cloudinary";
 
 cloudinary.config({ 
-    cloud_name:process.env.CLOUDINARY_CLOUD_NAME, 
-    api_key:process.env.CLOUDINARY_API_KEY, 
-    api_secret:process.env.CLOUDINARY_API_SECRET
+    cloud_name:"dxo3geefa", 
+    api_key:"696747161855847", 
+    api_secret:"fOWgRl6hulZWxWT1o14-F2ZuiOA"
 });
 
 const createProduct=async(req,res)=>{
@@ -36,10 +36,11 @@ const createProduct=async(req,res)=>{
             productcompanylogo:uploadedUrls[5]
         })
         await newProduct.save();
-        res.send(newProduct);
+        res.status(200).send({success:true,message:"Product Created"});
     }
     catch(error){
-        console.log("error in creating product",error);
+        console.log(error)
+        res.status(200).send({success:false,message:"error in creating product"});
     }
 }
 const getProducts=async(req,res)=>{
@@ -55,12 +56,15 @@ const getProducts=async(req,res)=>{
 const getEachProduct=async(req,res)=>{
     try{
          const id=req.body.id;
+
          const getEachProduct=await product.findById(id)
-         res.send(getEachProduct);
+
+         if(!getEachProduct) return res.status(200).send({success:false,message:"no product found"});
+
+         res.status(200).send({success:true,message:"Product get",product:getEachProduct});
     }
     catch(error){
-        console.log(error);
-        res.send(error);
+        res.status(200).send({success:false,message:"erorr in fetch product"});
     }
 }
 const deleteProduct=async(req,res)=>{
@@ -86,4 +90,17 @@ const editProduct=async(req,res)=>{
         res.send(error);
     }
 }
-export {createProduct,getProducts,getEachProduct,deleteProduct,editProduct};
+const getFilteredProducts=async(req,res)=>{
+    try{
+        if(!(req.body.query)) return res.status(200).send({success:true,product:[]});
+
+        const filteredProducts=await product.find({"productname":{"$regex":req.body.query,"$options":"xi"}});
+
+        res.status(200).send({success:true,message:"Filtered",product:filteredProducts});
+    }
+    catch(error){
+        res.status(200).send({success:false,message:"Not Filtered"});        
+    }
+}
+
+export {createProduct,getProducts,getEachProduct,deleteProduct,editProduct,getFilteredProducts};

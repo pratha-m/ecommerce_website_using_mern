@@ -13,7 +13,7 @@ const EditProducts=()=>{
          setIsLoadingEditedProducts(false);
        })
       .catch((error)=>{
-          console.log("error in geting products",error)
+          // console.log("error in geting products",error)
           setIsLoadingEditedProducts(false);
        })
     }
@@ -25,11 +25,11 @@ const EditProducts=()=>{
       setIsLoadingEditedProducts(true);
       Axios.post(`${process.env.REACT_APP_BASE_URL}/deleteproduct`,{id:id})
       .then(()=>{
-        console.log("deleted product Successfully")
+        // console.log("deleted product Successfully")
         getProducts();
       })
       .catch(()=>{
-        console.log("error in deleting product")
+        // console.log("error in deleting product")
         setIsLoadingEditedProducts(false);
       })
     }
@@ -71,7 +71,9 @@ const EditProducts=()=>{
           const productNameVal=productName.innerText;
           const productPriceVal=showPrice.innerText;
           Axios.put(`${process.env.REACT_APP_BASE_URL}/editproduct`,{productid:id,productname:productNameVal,productprice:productPriceVal})
-          .then((result)=>{console.log(result.data)})
+          .then((result)=>{
+            console.log("Product Updated Successfully")
+          })
           .catch(()=>{console.log("eror in updating product")})
         }
     }

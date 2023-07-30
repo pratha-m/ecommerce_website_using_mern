@@ -41,7 +41,7 @@ const EnterEmailToForgotPassword = ({errorToast,successToast}) => {
         <div className="otpFormDiv0">
           <div className="otpForm0">
             <div className="otpInputDiv0"><div className="otpInput0"><input type="email" onChange={(event)=>{setEmail(event.target.value)}} placeholder="Enter Email" className="otpInputTag0" name="email"/></div></div>
-            <div className="createAccountButtonDiv0"><Link to='' id="anchor" style={{color:"white",textDecoration:"none"}} className="createAccountButton0"><input type="button" id="button" onClick={fillEmailToForgotPassword} value="Continue" className="createAccountButtonTag0"/></Link></div>
+            <div className="createAccountButtonDiv0"><Link to='' id="anchor" style={{color:"white",textDecoration:"none"}} className="createAccountButton0 custom-button"><input type="button" id="button" onClick={fillEmailToForgotPassword} value="Continue" className="createAccountButtonTag0"/></Link></div>
           </div>
         </div>
       </div>

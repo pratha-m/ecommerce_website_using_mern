@@ -79,7 +79,7 @@
 }
 .createaccount_inputDiv .createaccount_input{
     height:65%;
-    width: 98%;
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -91,8 +91,8 @@
     border: none;
 }
 .createaccount_inputDiv .createaccount_passwordInput input{
-    width:97%;
-    border-radius:10px 0px 0px 10px;
+    width:100%;
+    border-radius:10px;
 }
 .createaccount_showPasswordIconDiv{
     display: flex;
@@ -233,4 +233,9 @@
         width:100px;
         font-size:0.6rem;
      }
+}
+@media screen and (max-width:737px){
+    .createaccount_inputDiv{
+        width: 95%;
+    }
 }

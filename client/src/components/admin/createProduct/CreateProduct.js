@@ -15,27 +15,21 @@ const CreateProduct = () => {
 
   const fileSelectedHandler=(event)=>{
     setProductImage(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const fileSelectedHandler1=(event)=>{
     setProductImage1(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const fileSelectedHandler2=(event)=>{
     setProductImage2(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const fileSelectedHandler3=(event)=>{
     setProductImage3(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const fileSelectedHandler4=(event)=>{
     setProductImage4(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const fileSelectedHandler5=(event)=>{
     setProductCompanyLogo(event.target.files[0])
-    console.log(event.target.files[0]);
   }
   const manageProductDeal=()=>{
      if(productDeal==="false"){
@@ -68,8 +62,18 @@ const CreateProduct = () => {
       config: { headers: { 'Content-Type': 'multipart/form-data' } }
      })
     .then((result)=>{
-      createProductBtn.disabled=false;
-      createProductBtn.innerText="Create Product";
+      const {data}=result;
+      const {success}=data;
+      if(success){
+        console.log("Product Created")
+        createProductBtn.disabled=false;
+        createProductBtn.innerText="Create Product";
+      }
+      else{
+        console.log(data.message)
+        createProductBtn.disabled=false;
+        createProductBtn.innerText="Create Product";
+      }
     })
     .catch((error)=>{
       console.log("error in creating product",error)

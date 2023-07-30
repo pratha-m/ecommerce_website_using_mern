@@ -2,27 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
-const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo}) => {
-  const [productList,setProductList]=useState([]);
-  const [isLoadingProducts,setIsLoadingProducts]=useState(true); 
-
+const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo,getProducts,productList,successToast,errorToast,isLoadingProducts,setIsLoadingProducts}) => {
+  
   const navigate=useNavigate();
+ 
   useEffect(()=>{
-     setIsLoadingProducts(true);
-     Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
-     .then((result)=>{
-         setProductList(result.data)
-         setIsLoadingProducts(false);
-      })
-     .catch((error)=>{
-        console.log("error in geting products",error)
-        setIsLoadingProducts(false);
-      })
+     getProducts();
   },[])
   const handleClick=(id)=>{
     Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:id})
     .then((result)=>{
-      navigate("/eachproductpage",{state:result.data})
+      const {data}=result;
+      const {success}=data;
+      if(success){
+        navigate(`/eachproductpage/?product=${id}`);
+      }
+      else{
+        console.log(data.message);
+      }
     })
     .catch((error)=>{console.log("error in getting product",error)})
   }
@@ -34,69 +31,42 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo}) => 
         if(result.data.success){
            e.target.classList.remove("changeToNormalHeart"); 
            e.target.classList.add("changeToRedHeartImage"); 
-          setChangeNo(changeNo+1);
+           successToast("Product add to wishlist");
+           setChangeNo(changeNo+1);
         }
         else{
           Axios.post(`${process.env.REACT_APP_BASE_URL}/removewishlistproduct`,{userId,wishlistProductId:id})
           .then((result)=>{
              e.target.classList.remove("changeToRedHeartImage");   
              e.target.classList.add("changeToNormalHeart");
-            setChangeNo(changeNo+1);
+             setChangeNo(changeNo+1);
+             successToast("Product Removed From wishlist");
           })
           .catch(()=>{
-            console.log("Eror in remove");
+            errorToast("Error in removing wishlist product")
           })
         }
         e.target.disabled=false;
       })
       .catch((error)=>{
-        console.log("error add wishlist")
+        errorToast("Error in adding wishlist product")
         e.target.disabled=false;
       })
     }
     else{
-      console.log("Login First");
+      errorToast("Login First")
     }
   }
   
+ 
   const matchWishlistAndProductId=(productId)=>{
-       for(let i=0;i<wishlistProducts.length;i++){
-          if(wishlistProducts[i].product===productId){
-            return true;
-          }
+    for(let i=0;i<wishlistProducts.length;i++){
+       if(wishlistProducts[i].product===productId){
+         return true;
        }
-       return false;
+    }
+    return false;
   }
-
-  // const addToWishlist = (id,index) => {
-  //   let addToWishlistBtn=document.getElementById(`addToWishlist${index}`)
-  //   if(addToWishlistBtn.classList.contains("changeToNormalHeart")) {
-  //     Axios.post("${process.env.REACT_APP_BASE_URL}/addtowishlist", {
-  //       userId,
-  //       productId:id,
-  //       heart:"changeToRedHeartImage"
-  //     }).then(() => {
-  //       console.log("Add To Wishlist");
-  //       Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachwishlistproduct`, {wishlistProductId:id,userId })
-  //         .then((result) => {
-  //           addToWishlistBtn.classList.remove("changeToNormalHeart");
-  //           addToWishlistBtn.classList.add(`${result.data.heart}`);
-  //           console.log("change heart color");
-  //         })
-  //         .catch(() => { console.log("erorr in getting each wishlist product") })
-  //     });
-  //   }
-  //   else {
-  //     Axios.post("${process.env.REACT_APP_BASE_URL}/removewishlistproduct",{userId,wishlistProductId:id,heart:" "})
-  //     .then((result)=>{
-  //       addToWishlistBtn.classList.remove("changeToRedHeartImage");
-  //       // addToWishlistBtn.classList.add(`${result.data.heart}`);
-  //       addToWishlistBtn.classList.add(`changeToNormalHeart`);
-  //     })
-  //     .catch(()=>{console.log("error in updating product")})
-  //   }
-  // }
-
 
   return (
     <div>
@@ -107,7 +77,9 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo}) => 
           return(
             <div key={index}  style={{ color: "black", textDecoration: "none" }} className="eachItem">
               <div className="eachItemInnerDiv">
-                <div className="eachItemImageDiv" onClick={()=>{handleClick(eachProduct._id)}}><img src={`${eachProduct.productimage}`}  style={{height:"100%",width:"fitContent"}} alt="" /></div>
+                <div className="eachItemImageDiv" onClick={()=>{handleClick(eachProduct._id)}}>
+                  <img src={`${eachProduct.productimage}`}  style={{height:"90%",width:"fitContent"}} alt="" />
+                </div>
                 <div className="eachItemOtherTextDiv">
                   <div className="productName">{eachProduct.productname}</div>
                   {/* <div div className="stars">
@@ -128,7 +100,7 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo}) => 
                   <div className="freeDeliveryDiv">Free Delivery</div>
                 </div>
               </div>
-              <div  className={`addToWishlistButtonDiv ${matchWishlistAndProductId(eachProduct._id)?"changeToRedHeartImage":"changeToNormalHeart"}`} id={`addToWishlist${index}`}  onClick={(e)=>{addToWishlist(e,eachProduct._id)}}></div>
+              <div  className={`addToWishlistButtonDiv ${isLoggedIn?(matchWishlistAndProductId(eachProduct._id)?"changeToRedHeartImage":"changeToNormalHeart"):"changeToNormalHeart"}`} id={`addToWishlist${index}`}  onClick={(e)=>{addToWishlist(e,eachProduct._id)}}></div>
               {/* "changeToNormalHeart":"changeToRedHeartImage" */}
             </div>
           )

@@ -314,33 +314,30 @@
 
   /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap'); */
 
-*{
-    /* box-sizing: border-box; */
-    /* padding: 0;
-    margin: 0; */
-    /* font-family: 'Open Sans', sans-serif; */
-}
-body{
-    /* line-height: 1.5; */
-}
 .card-wrapper{
     max-width: 1100px;
     margin: 0 auto;
 }
 .card-wrapper img{
-    width: 100%;
+    width: 80%;
     display: block;
 }
 .img-display{
     overflow: hidden;
+    height: 380px;
 }
 .img-showcase{
     display: flex;
     width: 100%;
     transition: all 0.5s ease;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 .img-showcase img{
-    min-width: 100%;
+    /* min-width: 100%; */
+    max-height: 90%;
+    width: max-content;
 }
 .img-select{
     display: flex;
@@ -459,7 +456,7 @@ body{
     width: 60px;
 }
 .purchase-info .btn{
-    cursor: pointer;
+    /* cursor: pointer; */
     color: #fff;
 }
 .purchase-info .btn:first-of-type{
@@ -528,3 +525,24 @@ body{
         padding-top: 0;
     }
 }
+.custom-button:focus {
+    touch-action: manipulation; /* This prevents the default tap (highlight) effect */
+    -webkit-tap-highlight-color: transparent; /* For older versions of some browsers */
+}
+@media screen and (max-width:484px){
+    .relatedProductsHead{
+        padding-left: 0px;
+        justify-content: center;
+        font-size: 35px;
+    }
+    .product-title{
+        font-size: 2rem;
+    }
+}
+
+.loader-wrapper{
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

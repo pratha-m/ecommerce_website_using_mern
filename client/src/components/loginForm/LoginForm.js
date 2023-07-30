@@ -1,8 +1,7 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import "./loginForm.css"
 import Axios from 'axios';
 import {Link,useNavigate} from "react-router-dom";
-import Home from '../admin/adminHome/Home';
 
 const LoginForm = ({changeNo,setChangeNo,errorToast,successToast}) => {
   const [email,setEmail]=useState("");
@@ -43,7 +42,6 @@ const LoginForm = ({changeNo,setChangeNo,errorToast,successToast}) => {
       })
     }
     else{
-      console.log("Enter All Credentials");
       errorToast("Enter All Credentials")
     }
   }
@@ -59,7 +57,7 @@ const LoginForm = ({changeNo,setChangeNo,errorToast,successToast}) => {
                            <div className="_log_otpInputDiv"><div className="_log_otpInput"><input type="email" onChange={(event)=>{setEmail(event.target.value)}} placeholder="Email" className="_log_otpInputTag otpInputTag1" name="email"/></div></div>  
                            <div className="_log_otpInputDiv _log_passwordInputDiv">
                                    <div className="_log_otpInput _log_passwordInput"><input type="password" onChange={(event)=>{setPassword(event.target.value)}} placeholder="Enter Password" className="_log_otpInputTag" name="password" id="passwordInput"/></div>
-                                   <div className="_log_showPasswordIcon" id="showPasswordIcon"></div>
+                                   {/* <div className="_log_showPasswordIcon" id="showPasswordIcon"></div> */}
                            </div>  
                            <div className="_log_createAccountButtonDiv"><div className="_log_createAccountButton"><input value="Sign In" type="button" className="_log_createAccountButtonTag" onClick={checkEmail}/></div></div>
                    </div>

@@ -1,12 +1,12 @@
 import React from 'react'
 import "./logout.css"
 import { useNavigate } from 'react-router-dom'
-const LOgout= ({changeNo,setChangeNo}) => {
+const LOgout= ({changeNo,setChangeNo,getProducts}) => {
    const navigate=useNavigate();
    const LogoutFunction=()=>{
-    document.cookie=`ecommerce_token=; path=/; domain=localhost; expires=${new Date(0).toUTCString()}`
-    setChangeNo(changeNo+1);
-    navigate("/");
+     document.cookie=`ecommerce_token=; path=/;expires=${new Date(0).toUTCString()}`
+     setChangeNo(changeNo+1);
+     navigate("/");
   }
   return (
     <div>

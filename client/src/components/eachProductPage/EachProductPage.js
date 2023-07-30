@@ -2,73 +2,66 @@ import React, { useEffect,useState } from 'react'
 import "./eachProductPage.css"
 import { useLocation,useNavigate} from 'react-router-dom';
 import Axios from "axios"
+import Loader from '../loader/Loader';
 // import {toast} from "react-toastify";
 
 const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,setChangeNo,name,email}) => {
-
     // const [productQuantity,setProductQuantity]=useState(1)
     const location = useLocation();
-    const productData=location.state;
-
-    // managing product pictures 
-    // useEffect(()=>{
-    //     let productImage=document.getElementById("myimage");
-    //     let galleryImg1Div=document.getElementById("galleryImg1Div");
-    //     let galleryImg2Div=document.getElementById("galleryImg2Div");
-    //     let galleryImg3Div=document.getElementById("galleryImg3Div");
-    //     let galleryImg4Div=document.getElementById("galleryImg4Div");
-    //     let galleryImg5Div=document.getElementById("galleryImg5Div");
-    //     let galleryImg1=document.getElementById("galleryImg1")
-    //     let galleryImg2=document.getElementById("galleryImg2")
-    //     let galleryImg3=document.getElementById("galleryImg3")
-    //     let galleryImg4=document.getElementById("galleryImg4")
-    //     let galleryImg5=document.getElementById("galleryImg5")
-    //     let result=document.getElementById("myresult");
-    //     galleryImg1Div.addEventListener("mouseover",function(){
-    //         productImage.src=galleryImg1.src;
-    //         result.style.backgroundImage = "url('" + productImage.src + "')";
-    //     })
-    //     galleryImg2Div.addEventListener("mouseover",function(){
-    //         productImage.src=galleryImg2.src;
-    //         result.style.backgroundImage = "url('" + productImage.src + "')";
-    //     })
-    //     galleryImg3Div.addEventListener("mouseover",function(){
-    //         productImage.src=galleryImg3.src;
-    //         result.style.backgroundImage = "url('" + productImage.src + "')";
-    //     })
-    //     galleryImg4Div.addEventListener("mouseover",function(){
-    //         productImage.src=galleryImg4.src;
-    //         result.style.backgroundImage = "url('" + productImage.src + "')";
-    //     })
-    //     galleryImg5Div.addEventListener("mouseover",function(){
-    //         productImage.src=galleryImg5.src;
-    //         result.style.backgroundImage = "url('" + productImage.src + "')";
-    //     })
-    // })
+    const [productData,setProductData]=useState({});
+    const [isLoadingProduct,setIsLoadingProduct]=useState(true);
+  
     const [productList,setProductList]=useState([]);
     const navigate=useNavigate();
+    const queryString=window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const productId=urlParams.get("product");
     useEffect(()=>{
+       setIsLoadingProduct(true);
+       Axios.post("http://localhost:3001/geteachproduct",{id:productId})
+       .then((result)=>{
+         const {data}=result;
+         const {success}=data;
+         if(success){
+           setIsLoadingProduct(false);
+           setProductData(data.product)
+         }
+         else{
+           setIsLoadingProduct(false);
+           navigate("/");
+         }
+       })
+       .catch((err)=>{
+        setIsLoadingProduct(false);
+        console.log("eror")
+      })
+  
        Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
        .then((result)=>{
         setProductList(result.data);
-      },[])
-       .catch((error)=>{console.log("error in geting products",error)})
+       }).catch((error)=>{console.log("error in geting products",error)})
+
        const imgitems=document.querySelectorAll(".img-select .img-item");
-       let imgShowcase=document.getElementById("img-showcase");
-       // console.log(imgitems)
+       let imgShowcase=document.getElementById("mainImage");
        imgitems.forEach((imgItem,index)=>{
-           imgItem.addEventListener("click",function(){
-             imgShowcase.style.transform=`translateX(${-379*index}px)`
+           imgItem.addEventListener("mouseover",function(){
+            imgShowcase.src=imgItem.firstChild.src;
            })
        })
-    })
+    },[productId])
     const handleClick=(id)=>{
-      console.log(id)
-      Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:id})
-      .then((result)=>{
-        navigate("/eachproductpage",{state:result.data})
-      })
-      .catch((error)=>{console.log("error in getting product",error)})
+       Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:id})
+       .then((result)=>{
+         const {data}=result;
+         const {success}=data;
+         if(success){
+           navigate(`/eachproductpage/?product=${id}`);
+         }
+         else{
+           console.log(data.message);
+         }
+       })
+       .catch((error)=>{console.log("error in getting product",error)})
     }
     const addToCart=(event,id)=>{
         if(isLoggedIn){
@@ -171,42 +164,19 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
       event.target.disabled=false;
       event.target.style.backgroundColor="orange"
     }
-   
-//     window.onload=()=>{
-//       const imgs = document.querySelectorAll('.img-select div');
-//       const imgBtns = [...imgs];
-//       let imgId = 1;       
-
-//       imgBtns.forEach((imgItem) => {
-//         imgItem.addEventListener('click', (event) => {
-//              console.log(imgItem);
-//                event.preventDefault();
-//                imgId = imgItem.dataset.id;
-//                slideImage();
-//       });
-// });
-
-// function slideImage(){
-//     const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-//     document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-// }
-
-// window.addEventListener('resize', slideImage);
-// }
-
-//     transform: translateX(-379px);
-
+    
     return (
-    <div>
-       <div className= "card-wrapper">
-      <div className= "card">
+    <div>  
+      {isLoadingProduct && <div className='loader-wrapper'><Loader/></div>}
+      {productData && <div className= "card-wrapper">
+        <div className= "card">
         <div className= "product-imgs">
           <div className= "img-display">
             <div className= "img-showcase" id='img-showcase'>
-              <img src ={productData.productimage} alt = "shoe imge"/>
-              <img src ={productData.productimage1} alt = "shoe imge"/>
+              <img src ={productData.productimage} id='mainImage' alt = "shoe imge"/>
+              {/* <img src ={productData.productimage1} alt = "shoe imge"/>
               <img src ={productData.productimage2} alt = "shoe imge"/>
-              <img src ={productData.productimage3} alt = "shoe imge"/>
+              <img src ={productData.productimage3} alt = "shoe imge"/> */}
             </div>
           </div>
           <div className= "img-select">
@@ -278,17 +248,17 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
 
           <div className= "purchase-info">
             {/* <input type = "number" min = "0" value = "1"/> */}
-            <button type = "button" className= "btn" onClick={(e)=>{addToCart(e,productData._id,productData)}}>
+            <button type = "button" className= "btn custom-button" onClick={(e)=>{addToCart(e,productData._id,productData)}}>
               Add to Cart <i className= "fas fa-shopping-cart"></i>
             </button>
-            <button type = "button" className= "btn" onClick={(e)=>{buyNow(e,productData.productprice)}}>Buy Now</button>
+            <button type = "button" className= "btn custom-button" onClick={(e)=>{buyNow(e,productData.productprice)}}>Buy Now</button>
           </div>
 
           
         </div>
+        </div>
       </div>
-    </div>
-
+      }
     {/* {{!-- related products container starts --}} */}
     <div className="relatedProductsContainer">
     <div>
@@ -298,7 +268,7 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
           return( 
             <div key={index} onClick={()=>{handleClick(eachProduct._id)}} style={{ color: "black", textDecoration: "none",display:`${(eachProduct._id===productData._id)?"none":"flex"}` }} className="eachItem">
               <div className="eachItemInnerDiv">
-                <div className="eachItemImageDiv"><img src={`${eachProduct.productimage}`}  style={{height:"100%",width:"fitContent"}} alt="" /></div>
+                <div className="eachItemImageDiv"><img src={`${eachProduct.productimage}`}  style={{height:"90%",width:"fitContent"}} alt="" /></div>
                 <div className="eachItemOtherTextDiv">
                   <div className="productName">{eachProduct.productname}</div>
                   {/* <div div className="stars">

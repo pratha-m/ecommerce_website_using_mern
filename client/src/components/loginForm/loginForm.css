@@ -7,7 +7,7 @@ body{
     padding:0;
 }    
 ._log_createAccountOtpFormContainer{
-    height:75vh;
+    height:78vh;
     width:100%;
     background-color:rgb(190, 190, 182);
     display:flex;
@@ -114,7 +114,7 @@ body{
     cursor:pointer;
 }
 ._log_passwordInputDiv input{
-    border-radius:10px 0px 0px 10px;
+    border-radius:10px;
 }
 ._log_passwordInput{
     height:100%;
@@ -153,7 +153,7 @@ body{
     font-size:20px;
     color: white;
     background-color:#506a50;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 ._log_createAccountButtonTag:hover{
     background-color:#5f865f;
