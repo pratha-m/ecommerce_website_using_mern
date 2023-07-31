@@ -1,14 +1,13 @@
 import product from "../models/Product.js";
 import {v2 as cloudinary} from "cloudinary";
 
-cloudinary.config({ 
-    cloud_name:"dxo3geefa", 
-    api_key:"696747161855847", 
-    api_secret:"fOWgRl6hulZWxWT1o14-F2ZuiOA"
-});
-
 const createProduct=async(req,res)=>{
     try{
+        cloudinary.config({ 
+            cloud_name:process.env.CLOUDINARY_CLOUD_NAME, 
+            api_key:process.env.CLOUDINARY_API_KEY, 
+            api_secret:process.env.CLOUDINARY_API_SECRET
+        });
         const productImages=req.files.productimage;
         let uploadedUrls=[];
         async function allImagesUpload(){
