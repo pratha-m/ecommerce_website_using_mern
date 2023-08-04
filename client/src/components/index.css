@@ -8,10 +8,11 @@ body{
 }
 .navigationContainer{
    width:100%;
-   background-color:rgb(234 234 234);
+   background-color:#131921;
    position:sticky;
    top:0;
    z-index: 5;
+   box-shadow: 0.5px 0.5px 10px rgba(0,0,0,0.6);
 }
 .allCategoriesBox{
     height:30vh;
@@ -154,7 +155,7 @@ body{
     position: relative;
     min-height:311px;
     width:100%;
-    background-color:white;
+    background-color:#9267670d;
     padding-top:30px;
     display: flex;
     flex-wrap: wrap;
@@ -184,6 +185,9 @@ body{
 }
 .upperNavbar .aTagLogo{
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .websiteLogoContainer{
     height:90%;
@@ -223,10 +227,13 @@ body{
     padding:8px 12px;
     color: white;
     cursor: pointer;
-    background-color: gray;
+    background-color: rgba(0,0,0,0.2);
     font-weight: bold;
     font-size: 20px;
     border-radius: 50px;
+    position: relative;
+    right: 6px;
+
 }
 .loginBtnBackground{
     background-color: rgb(120, 233, 120);
@@ -249,6 +256,7 @@ body{
     box-shadow:0.5px 0.5px 10px rgb(131, 110, 110);
     display: none;
     border-radius: 20px;
+    overflow: hidden;
 }
 .moreOptionsAndSubmenu:hover .moreOptionsSubmenu{
    display: block;   
@@ -257,7 +265,7 @@ body{
     background-image: url(../../public/images/arrow_up.png);
 } 
 .wishlistNo{
-    width: 73px;
+    width: 130px;
     /* background-color: blue; */
     height: 100%;
     display: flex;
@@ -279,6 +287,11 @@ body{
 .eachSubmenuOption a{
     text-decoration: none;
     color: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .eachSubmenuOption .submenuIcons{
     height: 30px;
@@ -370,7 +383,7 @@ body{
 .searchIconContainer{
     height:100%;
     width:4rem;
-    background-color: white;
+    background-color: orange;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -415,8 +428,8 @@ body{
     background-color: red;
     font-size: 22px;
     border-radius: 40px;
-    height: 22px;
-    width: 16px;
+    height: 25px;
+    width: 25px;
     padding: 3px 6px;
     display: flex;
     align-items: center;
@@ -426,16 +439,24 @@ body{
 
 /* product container starts */
 .eachItem{
-    height:40vh;
-    width:255px;
+    height: 58vh;
+    width: 290px;
     /* background-color: blue; */
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
     /* cursor: pointer; */
-    border: solid #dadaef;
     position: relative;
+    border-radius: 10px;
+    box-shadow: 0.3px 0.3px 5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    background-color: transparent;
+    transition: all 2s;
+}
+.eachItem:hover{
+    transform: translateY(-4px);
+    box-shadow: 0.3px 0.3px 15px rgba(0,0,0,0.2);
 }
 .eachItem>.addToWishlistButtonDiv{
     top: 1%;
@@ -464,10 +485,10 @@ body{
 .eachItemInnerDiv{
     height:100%;
     width: 100%;
-    background-color: orange;
+    /* background-color: orange; */
 }
 .eachItemImageDiv{
-    height: 50%;
+    height: 60%;
     width: 100%;
     background-color: white;
     display: flex;
@@ -479,18 +500,20 @@ body{
     height: 90%;
 } */
 .eachItemOtherTextDiv{
-    height:50%;
+    height:40%;
     width:100%;
     background-color:white;
 }
 .productName{
-    height: 20%;
+    min-height: 20%;
     /* background-color:pink; */
     background-color:white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    font-size: 22px;
+    height: max-content;
 }
 .stars{
     height: 15%;
@@ -539,7 +562,7 @@ body{
     background-repeat: no-repeat;
 }
 .dealOfTheDayDiv{
-    height:20%;
+    height:max-content;
     width:100%;
    display: flex;
    align-items: center;
@@ -548,7 +571,7 @@ body{
    /* background-color: red; */
 }
 .dealOfTheDay{
-  height: 100%;
+  height: 30px;
   width:80%;
   border-radius:5px;
   display: flex;
@@ -568,6 +591,8 @@ body{
     display: flex;
     align-items: center;
     justify-content:center;
+    min-height: 20%;
+    height: max-content;
 }
 .cutPrice{
     display: flex;
@@ -584,7 +609,8 @@ body{
     margin-left: 10px;
 }
 .freeDeliveryDiv{
-    height:20%;
+    min-height:20%;
+    height: max-content;
     width: 100%;
     /* background-color: blueviolet; */
     display: flex;
@@ -626,6 +652,9 @@ body{
     }
     .lowerNavbar .searchContainerLower{
         width: 99%;
+    }
+    .lowerNavbar .searchContainerLower .searchedItemsContainer{
+        max-height: 244px;
     }
     .otherOptionsDiv{
         width: 90%;

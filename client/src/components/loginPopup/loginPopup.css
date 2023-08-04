@@ -1,0 +1,47 @@
+.loginPopupPage{
+    height: 78vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3d527e17;
+}
+.loginPopupBox{
+    height: 330px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    box-shadow:0.5px 0.5px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: all 2s;
+}
+.loginPopupBox:hover{
+    box-shadow:0.5px 0.5px 10px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+}
+.loginPopupBox a{
+    height: 40px;
+    width: 100px;
+    background-color: green;
+    border-radius: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 19px;
+}
+.loginPopupBox .loginPopupImage{
+   height: 50%;
+   width: 80%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.loginPopupImage img{
+    height: 100%;
+}

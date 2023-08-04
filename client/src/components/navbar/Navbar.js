@@ -65,7 +65,7 @@ const Navbar = ({isLoggedIn,isAdmin,name,cartSize,wishlistProducts}) => {
                   <div className="searchContainerUpper" id='searchContainerUpper' >
                       <div className="searchBar">
                           <div className="searchInputDiv"><input type="text" placeholder='Search Products' className="searchInput" onChange={changeSearchQuery} onFocus={showSearchResults}/></div>
-                          <div className="searchIconContainer"><img style={{height:"50%"}} src="images/search.png" alt=""/></div>
+                          <div className="searchIconContainer"><img style={{height:"50%"}} src="/images/search.png" alt=""/></div>
                       </div>
                      <div className='searchedItemsContainer' id='searchedItemsContainer'>
                        {productSearchList && productSearchList.map((eachItem, index) => {
@@ -102,28 +102,18 @@ const Navbar = ({isLoggedIn,isAdmin,name,cartSize,wishlistProducts}) => {
                       </div>
                       <div className="moreOptionsSubmenu" id='moreOptionsSubmenu'>
                           {
-                             (isLoggedIn) && <div className="eachSubmenuOption submenuSecondOption"><img src="/images/profile.png" alt="" className="submenuIcons"/><Link to="/profile">Profile</Link></div>
-                          }
-                          {
                             (!isLoggedIn) && <div className="eachSubmenuOption submenuSecondOption"><img src="/images/login.png" alt="" className="submenuIcons"/><Link to="/login">Login</Link></div>
                           }
                           {
                             (!isLoggedIn) && <div className="eachSubmenuOption submenuSecondOption"><img src="/images/createAccount.png" alt="" className="submenuIcons"/><Link to="/createaccount">Create Account</Link></div>
                           }
-                          {/* {
-                            isLoggedIn && isAdmin && <div className="eachSubmenuOption submenuFourthOption"><img src="/images/admin.png" alt="" className="submenuIcons"/><Link to="/admin">Admin Panel</Link></div> 
-                          } */}
                           {
                             isLoggedIn && <div className="eachSubmenuOption submenuFourthOption"><img src="/images/logout.png" alt="" className="submenuIcons"/><Link to="/logout">Logout</Link></div> 
-                          }
-                          {/* {
-                             isLoggedIn && <div className="eachSubmenuOption submenuThirdOption"><img src="/images/yourorders.png" alt="" className="submenuIcons"/><Link to="/yourorders">Your Orders</Link></div>
-                          }                           */}
-                          {
-                            isLoggedIn && <div className="eachSubmenuOption submenuFifthOption"><img src="/images/wishlist.png" alt="" className="submenuIcons"/><Link to="/wishlist">wishlist</Link>
-                               <div className="wishlistNo"><div className="innerNoWishlist">{wishlistProducts.length}</div></div>
-                            </div>
-                          }
+                          }                           
+                          <div className="eachSubmenuOption submenuSecondOption"><img src="/images/profile.png" alt="" className="submenuIcons"/><Link to="/profile">Profile</Link></div>
+                          <div className="eachSubmenuOption submenuFifthOption"><img src="/images/wishlist.png" alt="" className="submenuIcons"/><Link to="/wishlist">wishlist</Link>
+                               <div className="wishlistNo"><div className="innerNoWishlist">{isLoggedIn?wishlistProducts.length:"0"}</div></div>
+                          </div>
                       </div>
                   </div>
               </div>

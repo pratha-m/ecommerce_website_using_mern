@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     min-height: 78vh;
     padding: 30px 0px;
+    background-color: #3d527e17;
 }
 .profilePage .profileImage{
     display: flex;

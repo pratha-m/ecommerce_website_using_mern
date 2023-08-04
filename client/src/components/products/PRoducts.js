@@ -2,9 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
-const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo,getProducts,productList,successToast,errorToast,isLoadingProducts,setIsLoadingProducts}) => {
+const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,errorToast,setChangeNo}) => {
+  const [isLoadingProducts,setIsLoadingProducts]=useState(false);
+  const [productList,setProductList]=useState([]);
   
   const navigate=useNavigate();
+  const getProducts=()=>{
+    setIsLoadingProducts(true)
+    Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
+    .then((result)=>{
+         console.log(result)
+        setProductList(result.data)
+        setIsLoadingProducts(false);
+     })
+    .catch((error)=>{
+       console.log("error in geting products",error.message)
+       setIsLoadingProducts(false);
+     })  
+  }
  
   useEffect(()=>{
      getProducts();
@@ -75,9 +90,9 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,setChangeNo,getPr
         {!isLoadingProducts && productList.length===0 && <div className='loader-wrapper'>Sorry No Products Found</div>}
         {!isLoadingProducts && productList.map((eachProduct,index)=>{
           return(
-            <div key={index}  style={{ color: "black", textDecoration: "none" }} className="eachItem">
-              <div className="eachItemInnerDiv">
-                <div className="eachItemImageDiv" onClick={()=>{handleClick(eachProduct._id)}}>
+            <div key={index} style={{ color: "black", textDecoration: "none" }} className="eachItem">
+              <div className="eachItemInnerDiv" onClick={()=>{handleClick(eachProduct._id)}} >
+                <div className="eachItemImageDiv" >
                   <img src={`${eachProduct.productimage}`}  style={{height:"90%",width:"fitContent"}} alt="" />
                 </div>
                 <div className="eachItemOtherTextDiv">

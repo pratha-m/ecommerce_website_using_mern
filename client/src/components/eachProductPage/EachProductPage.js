@@ -17,8 +17,9 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
     const urlParams = new URLSearchParams(queryString);
     const productId=urlParams.get("product");
     useEffect(()=>{
+       window.scrollTo(0, 0)
        setIsLoadingProduct(true);
-       Axios.post("http://localhost:3001/geteachproduct",{id:productId})
+       Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:productId})
        .then((result)=>{
          const {data}=result;
          const {success}=data;
@@ -41,13 +42,7 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
         setProductList(result.data);
        }).catch((error)=>{console.log("error in geting products",error)})
 
-       const imgitems=document.querySelectorAll(".img-select .img-item");
-       let imgShowcase=document.getElementById("mainImage");
-       imgitems.forEach((imgItem,index)=>{
-           imgItem.addEventListener("mouseover",function(){
-            imgShowcase.src=imgItem.firstChild.src;
-           })
-       })
+
     },[productId])
     const handleClick=(id)=>{
        Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:id})
@@ -164,11 +159,27 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
       event.target.disabled=false;
       event.target.style.backgroundColor="orange"
     }
-    
+    const changeToImage1=(e)=>{
+      let imgShowcase=document.getElementById("mainImage");
+      imgShowcase.src=e.target.src;
+    }
+    const changeToImage2=(e)=>{
+      let imgShowcase=document.getElementById("mainImage");
+      imgShowcase.src=e.target.src;
+    }
+    const changeToImage3=(e)=>{
+       let imgShowcase=document.getElementById("mainImage");
+      imgShowcase.src=e.target.src;
+    }
+    const changeToImage4=(e)=>{
+      let imgShowcase=document.getElementById("mainImage");
+      imgShowcase.src=e.target.src;
+    }
+
     return (
     <div>  
       {isLoadingProduct && <div className='loader-wrapper'><Loader/></div>}
-      {productData && <div className= "card-wrapper">
+      {!isLoadingProduct && productData && <div className= "card-wrapper">
         <div className= "card">
         <div className= "product-imgs">
           <div className= "img-display">
@@ -181,16 +192,16 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
           </div>
           <div className= "img-select">
             <div className= "img-item">
-                <img src = {productData.productimage} alt = "shoe imag"/>
+                <img src = {productData.productimage} alt = "shoe imag" onMouseOver={changeToImage1}/>
             </div>
             <div className= "img-item">
-                <img src = {productData.productimage1} alt = "shoe imae"/>
+                <img src = {productData.productimage1} alt = "shoe imae" onMouseOver={changeToImage2}/>
             </div>
             <div className= "img-item">
-                <img src = {productData.productimage2} alt = "shoe imae"/>
+                <img src = {productData.productimage2} alt = "shoe imae" onMouseOver={changeToImage3}/>
             </div>
             <div className= "img-item">
-                <img src = {productData.productimage3} alt = "shoe imae"/>
+                <img src = {productData.productimage3} alt = "shoe imae" onMouseOver={changeToImage4}/>
             </div>
           </div>
           {/* <div className= "img-select">
