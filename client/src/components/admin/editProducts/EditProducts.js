@@ -9,7 +9,8 @@ const EditProducts=()=>{
     const getProducts=()=>{
       Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
       .then((result)=>{
-         setProductList(result.data);
+         console.log(result)
+         setProductList(result.data.products);
          setIsLoadingEditedProducts(false);
        })
       .catch((error)=>{

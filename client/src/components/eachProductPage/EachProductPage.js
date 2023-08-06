@@ -10,6 +10,7 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
     const location = useLocation();
     const [productData,setProductData]=useState({});
     const [isLoadingProduct,setIsLoadingProduct]=useState(true);
+    const [isLoadingRelatedProduct,setIsLoadingRelatedProduct]=useState(true);
   
     const [productList,setProductList]=useState([]);
     const navigate=useNavigate();
@@ -26,6 +27,7 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
          if(success){
            setIsLoadingProduct(false);
            setProductData(data.product)
+           filteredProducts(data.product.productcompany);
          }
          else{
            setIsLoadingProduct(false);
@@ -37,10 +39,17 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
         console.log("eror")
       })
   
-       Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
-       .then((result)=>{
-        setProductList(result.data);
-       }).catch((error)=>{console.log("error in geting products",error)})
+      const filteredProducts=(productcompany)=>{
+        setIsLoadingRelatedProduct(true)
+        Axios.post(`${process.env.REACT_APP_BASE_URL}/filterproducts`,{brands:[productcompany]})
+        .then((result)=>{
+         setProductList(result.data.product);
+         setIsLoadingRelatedProduct(false);
+        }).catch((error)=>{
+         console.log("error in geting products",error)
+         setIsLoadingRelatedProduct(false);
+       })
+      }
 
 
     },[productId])
@@ -270,44 +279,49 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
         </div>
       </div>
       }
-    {/* {{!-- related products container starts --}} */}
-    <div className="relatedProductsContainer">
-    <div>
-      <div className='relatedProductsHead'>Related Products</div>
-      <div className="productsContainer">
-        {productList.map((eachProduct,index)=>{
-          return( 
-            <div key={index} onClick={()=>{handleClick(eachProduct._id)}} style={{ color: "black", textDecoration: "none",display:`${(eachProduct._id===productData._id)?"none":"flex"}` }} className="eachItem">
-              <div className="eachItemInnerDiv">
-                <div className="eachItemImageDiv"><img src={`${eachProduct.productimage}`}  style={{height:"90%",width:"fitContent"}} alt="" /></div>
-                <div className="eachItemOtherTextDiv">
-                  <div className="productName">{eachProduct.productname}</div>
-                  {/* <div div className="stars">
-                    <div className="eachStar star1"></div>
-                    <div className="eachStar star2"></div>
-                    <div className="eachStar star3"></div>
-                    <div className="eachStar star4"></div>
-                    <div className="eachStar star5"></div>
-                  </div> */}
-                  <div className="dealOfTheDayDiv">
-                    {(eachProduct.productdeal==="true")?(<div className="dealOfTheDay">Deal Of The Day</div>):null}
-                  </div>
-                  <div className="pricesDiv">
-                    <div className="showPrice">{eachProduct.productprice}Rs</div>
-                    {/* <div className="cutPrice">Rs:1000</div>
-                    <div className="savePrice">Save Rs:600</div> */}
-                  </div>
-                  {/* <div className="freeDeliveryDiv">Free Delivery</div> */}
-                </div>
+
+      
+{/* {{!-- related products container starts --}} */}
+<div className="relatedProductsContainer">
+<div>
+  <div className='relatedProductsHead'>Related Products</div>
+  <div className="productsContainer">
+      {isLoadingRelatedProduct && <div className='loader-wrapper'><Loader/></div>}
+      {!isLoadingRelatedProduct && productList.length===1 && <div className='loader-wrapper'>Sorry No Related Products Found</div>}
+      {!isLoadingRelatedProduct && productList && productList.map((eachProduct,index)=>{
+      return( 
+        <div key={index} onClick={()=>{handleClick(eachProduct._id)}} style={{ color: "black", textDecoration: "none",display:`${(eachProduct._id===productData._id)?"none":"flex"}` }} className="eachItem">
+          <div className="eachItemInnerDiv">
+            <div className="eachItemImageDiv"><img src={`${eachProduct.productimage}`}  style={{height:"90%",width:"fitContent"}} alt="" /></div>
+            <div className="eachItemOtherTextDiv">
+              <div className="productName">{eachProduct.productname}</div>
+              {/* <div div className="stars">
+                <div className="eachStar star1"></div>
+                <div className="eachStar star2"></div>
+                <div className="eachStar star3"></div>
+                <div className="eachStar star4"></div>
+                <div className="eachStar star5"></div>
+              </div> */}
+              <div className="dealOfTheDayDiv">
+                {(eachProduct.productdeal==="true")?(<div className="dealOfTheDay">Deal Of The Day</div>):null}
               </div>
-            </div> 
-          )
-        })}
-      <div className="gapContainer"></div>
-    </div>
-    </div>
-    </div>
-    {/* {{!-- related products container starts --}} */}
+              <div className="pricesDiv">
+                <div className="showPrice">{eachProduct.productprice}Rs</div>
+                {/* <div className="cutPrice">Rs:1000</div>
+                <div className="savePrice">Save Rs:600</div> */}
+              </div>
+              {/* <div className="freeDeliveryDiv">Free Delivery</div> */}
+            </div>
+          </div>
+        </div> 
+      )
+    })}
+  <div className="gapContainer"></div>
+</div>
+</div>
+</div>
+{/* {{!-- related products container starts --}} */}
+    
     </div>
   )
 }

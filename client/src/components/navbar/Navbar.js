@@ -11,7 +11,7 @@ const Navbar = ({isLoggedIn,isAdmin,name,cartSize,wishlistProducts}) => {
 
   const changeSearchQuery=(e)=>{  
       showSearchResults()
-      Axios.post(`${process.env.REACT_APP_BASE_URL}/filterproducts`,{query:e.target.value})
+      Axios.post(`${process.env.REACT_APP_BASE_URL}/filterproducts`,{searchquery:e.target.value})
         .then((result)=>{
            const {data}=result;
            const {success}=data;
@@ -98,7 +98,7 @@ const Navbar = ({isLoggedIn,isAdmin,name,cartSize,wishlistProducts}) => {
               <div className="otherOptionsDiv">
                   <div className="moreOptionsAndSubmenu">
                       <div className="moreOptions">
-                        {(!isLoggedIn)?<button id="loginBtn" className='loginBtnBackground custom-button'>More</button>:<button>{(name.includes(" "))?(name.substring(0,name.indexOf(" "))+".."):name.substring(0,7)+".."}</button>}
+                        {(!isLoggedIn)?<button id="loginBtn" className='loginBtnBackground custom-button'>More</button>:<button className='custom-button'>{(name.includes(" "))?(name.substring(0,name.indexOf(" "))+".."):name.substring(0,7)+".."}</button>}
                       </div>
                       <div className="moreOptionsSubmenu" id='moreOptionsSubmenu'>
                           {

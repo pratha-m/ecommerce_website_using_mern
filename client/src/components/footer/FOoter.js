@@ -1,5 +1,6 @@
 import React from 'react'
 import "./footer.css";
+import { Link } from 'react-router-dom';
 
 const FOoter = () => {
   return (
@@ -15,9 +16,12 @@ const FOoter = () => {
                <div>
                   <h2>Quick Links</h2>
                   <ul>
-                     <li><a href="#home"><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Home</a></li>
-                     <li><a href="#about"><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Login</a></li>
-                     <li><a href="#contact"><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Profile</a></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Home</Link></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/login"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Login</Link></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/profile"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Profile</Link></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/logout"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Logout</Link></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/cartpage"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Cart</Link></li>
+                     <li className='custom-button'><Link className='custom-button' to={"/wishlist"}><i className="fa fa-solid fa-chevron-up fa-rotate-90"></i>Wishlist</Link></li>
                   </ul> 
                </div>
            </div>

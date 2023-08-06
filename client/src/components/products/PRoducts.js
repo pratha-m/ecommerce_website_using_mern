@@ -2,18 +2,36 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
+import SideFilters from '../sideFiltererer/SideFilters';
+import "./products.css";
+
 const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,errorToast,setChangeNo}) => {
   const [isLoadingProducts,setIsLoadingProducts]=useState(false);
   const [productList,setProductList]=useState([]);
+  const [brands,setBrands]=useState([]);
+  const [categories,setCategories]=useState([]);
+  const [minPrice,setMinPrice]=useState(0);
+  const [maxPrice,setMaxPrice]=useState(0);
+  const [refetchProducts,setRefetchProducts]=useState(0);
   
   const navigate=useNavigate();
   const getProducts=()=>{
     setIsLoadingProducts(true)
     Axios.get(`${process.env.REACT_APP_BASE_URL}/getproducts`)
     .then((result)=>{
-         console.log(result)
-        setProductList(result.data)
-        setIsLoadingProducts(false);
+        if(result.data.success){
+          const {products,brands,prices,categories}=result.data;
+          setProductList(products)
+          setBrands(brands)
+          setMinPrice(prices.min)
+          setMaxPrice(prices.max)
+          setCategories(categories)
+          setIsLoadingProducts(false);
+        }
+        else{
+          console.log(result.data.message);
+          setIsLoadingProducts(false);
+        }
      })
     .catch((error)=>{
        console.log("error in geting products",error.message)
@@ -23,7 +41,7 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,erro
  
   useEffect(()=>{
      getProducts();
-  },[])
+  },[refetchProducts])
   const handleClick=(id)=>{
     Axios.post(`${process.env.REACT_APP_BASE_URL}/geteachproduct`,{id:id})
     .then((result)=>{
@@ -83,8 +101,28 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,erro
     return false;
   }
 
+  const openSideFilter=()=>{
+    const sideFilterBar=document.getElementById("sideFilterBar");
+    const sideFilterOverlay=document.getElementById("sideFilterOverlay");
+    const html=document.getElementsByTagName("html")[0];
+    sideFilterBar.style.transform="translateX(0%)"
+    sideFilterOverlay.style.transform="translateX(0%)"
+    html.style.overflow="hidden";
+  }
+
   return (
-    <div>
+    <div className='productPage'>
+      <SideFilters brands={brands} categories={categories} minPrice={minPrice} maxPrice={maxPrice} refetchProducts={refetchProducts} setRefetchProducts={setRefetchProducts} setProductList={setProductList}/>
+      {/* <div className="productPageHead">Products Category</div> */}
+      <form className="productPageTopBar">
+         <button type='button' className='filterByBtn' onClick={openSideFilter}>Filtered By</button>
+         {/* <select name="" id="sortBySelect">
+          <option value="">Featured</option>
+          <option value="">A-Z</option>
+          <option value="">low to high</option>
+          <option value="">high to low</option>
+         </select> */}
+      </form>
       <div className="productsContainer">
         {isLoadingProducts && <div className='loader-wrapper'><Loader /></div>}
         {!isLoadingProducts && productList.length===0 && <div className='loader-wrapper'>Sorry No Products Found</div>}

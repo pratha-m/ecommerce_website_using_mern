@@ -30,6 +30,10 @@ const productsSchema=new mongoose.Schema({
     productcompany:{
         type:String
     },    
+    productcategory:{
+         type:String,
+         default:"mobile"
+    },
     availablequantity:{
         type:Number,
         default:10

@@ -10,7 +10,8 @@ const CreateProduct = () => {
   const [productName,setProductName]=useState("");
   const [productDeal,setProductDeal]=useState("false");
   const [productPrice,setProductPrice]=useState("");
-  const [productCompany,setProductCompany]=useState("")
+  const [productCompany,setProductCompany]=useState("");
+  const [productCategory,setProductCategory]=useState("");
 
 
   const fileSelectedHandler=(event)=>{
@@ -55,6 +56,7 @@ const CreateProduct = () => {
      formData.append("productprice",productPrice)
      formData.append("productDeal",productDeal)
      formData.append("productcompany",productCompany)
+     formData.append("productcategory",productCategory)
      Axios({
       method: 'post',
       url: `${process.env.REACT_APP_BASE_URL}/createproduct`,
@@ -97,9 +99,11 @@ const CreateProduct = () => {
         <br/><br/>
         <label>Enter Product Name : </label><input type="text" name="productname" onChange={(event)=>{setProductName(event.target.value)}} />
         <br/><br/>
-        <label>Enter Product Price : </label><input type="text" name="productprice" onChange={(event)=>{setProductPrice(event.target.value)}}/>
+        <label>Enter Product Price : </label><input type="number" name="productprice" onChange={(event)=>{setProductPrice(event.target.value)}}/>
         <br/><br/>
         <label>Enter Product Company Name : </label><input type="text" name="productcompany" onChange={(event)=>{setProductCompany(event.target.value)}} />
+        <br/><br/>
+        <label>Enter Product Category Name : </label><input type="text" name="productcategory" onChange={(event)=>{setProductCategory(event.target.value)}} required/>
         <br/><br/>
         <label>Product Deal Of The Day : </label><input type="checkbox" name="productdeal" onClick={manageProductDeal}/>
         <br/><br/>

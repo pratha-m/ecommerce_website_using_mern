@@ -25,8 +25,8 @@ const createProduct=async(req,res)=>{
             productname:req.body.productname,  
             productprice:req.body.productprice,  
             productdeal:req.body.productDeal,
-            productcompany:req.body.productcompany,  
-            heart:" ",
+            productcompany:req.body.productcompany,
+            productcategory:req.body.productcategory,  
             productimage:uploadedUrls[0],
             productimage1:uploadedUrls[1],
             productimage2:uploadedUrls[2],
@@ -45,11 +45,24 @@ const createProduct=async(req,res)=>{
 const getProducts=async(req,res)=>{
     try{
         const products=await product.find();
-        res.send(products);
+
+        const brands=[...new Set(products.map((product)=>product.productcompany.toLowerCase()))];
+
+        const prices=products.map(product=>parseInt(product.productprice))
+
+        const categories=[...new Set(products.map(product=>product.productcategory))];
+
+        res.send({
+            success:true,
+            products:products,
+            brands:brands,
+            prices:{min:Math.min(...prices),max:Math.max(...prices)},
+            categories:categories
+        });
     }
     catch(error){
         console.log("sorry not fetching products ");
-        res.send("sorry not fetching products");
+        res.send({success:false,message:"sorry not fetching products"});
     }
 }
 const getEachProduct=async(req,res)=>{
@@ -91,14 +104,41 @@ const editProduct=async(req,res)=>{
 }
 const getFilteredProducts=async(req,res)=>{
     try{
-        if(!(req.body.query)) return res.status(200).send({success:true,product:[]});
+        let {searchquery,price,brands,categories}=req.body;
 
-        const filteredProducts=await product.find({"productname":{"$regex":req.body.query,"$options":"xi"}});
+        let totalProducts=await product.find();
+
+        let filteredProducts=totalProducts;
+
+        if(searchquery){
+            filteredProducts=filteredProducts.filter(product=>product.productname.toLowerCase().includes(searchquery.toLowerCase()));
+        }
+        if(price){
+            filteredProducts=filteredProducts.filter(product=>product.productprice<=parseInt(price))
+        }
+        if(brands && brands.length!=0){
+            brands=brands.map((eachBrand)=>{
+                return eachBrand.toLowerCase();
+            })
+            let filterBrand=function(product){
+              return brands.includes(product.productcompany.toLowerCase());
+            }
+            filteredProducts=filteredProducts.filter(filterBrand)
+        }
+        if(categories && categories.length!=0){
+            categories=categories.map((eachCategory)=>{
+                return eachCategory.toLowerCase();
+            })
+            let filterCategory=function(product){
+              return categories.includes(product.productcategory.toLowerCase());
+            }
+            filteredProducts=filteredProducts.filter(filterCategory);
+        }
 
         res.status(200).send({success:true,message:"Filtered",product:filteredProducts});
     }
     catch(error){
-        res.status(200).send({success:false,message:"Not Filtered"});        
+        res.status(200).send({success:false,message:"Not Filtered",error:error.message});        
     }
 }
 
