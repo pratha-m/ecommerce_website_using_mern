@@ -13,11 +13,15 @@ const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRef
   },[effectRun])
 
   const closeSideFilter=()=>{
+    const sideFilter=document.getElementById("sideFilter");
     const sideFilterBar=document.getElementById("sideFilterBar");
+    const sideFilterBtns=document.getElementById("sideFilterBtns");
     const sideFilterOverlay=document.getElementById("sideFilterOverlay");
     const html=document.getElementsByTagName("html")[0];
-    sideFilterBar.style.transform="translateX(-100%)"
-    sideFilterOverlay.style.transform="translateX(-100%)"
+    sideFilter.style.visibility="hidden";
+    sideFilterBar.style.transform="translateX(-100%)";
+    sideFilterBtns.style.transform="translateX(-100%)";
+    sideFilterOverlay.style.transform="translateX(-100%)";
     html.style.overflow="visible";
   }
   const updateFilteredBrands=(eachBrand,index)=>{
@@ -109,13 +113,13 @@ const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRef
                 )
               })}
             </div>
-            <div className="sideFilterBtns">
-              <button className='eachFilterBtn' id='clearFilterBtn' type='button' onClick={clearFilters}>Clear All</button>
-              <button className='eachFilterBtn' id='applyFilterBtn' type='button' onClick={applyFilters}>Apply Filters</button>
-            </div>
         </form>
       </div>
       <span className='sideFilterOverlay' id='sideFilterOverlay' onClick={closeSideFilter}></span>
+      <div className="sideFilterBtns" id='sideFilterBtns'>
+              <button className='eachFilterBtn' id='clearFilterBtn' type='button' onClick={clearFilters}>Clear All</button>
+              <button className='eachFilterBtn' id='applyFilterBtn' type='button' onClick={applyFilters}>Apply Filters</button>
+      </div>
     </div>
   )
 }

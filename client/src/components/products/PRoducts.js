@@ -102,11 +102,15 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,erro
   }
 
   const openSideFilter=()=>{
+    const sideFilter=document.getElementById("sideFilter");
     const sideFilterBar=document.getElementById("sideFilterBar");
+    const sideFilterBtns=document.getElementById("sideFilterBtns");
     const sideFilterOverlay=document.getElementById("sideFilterOverlay");
     const html=document.getElementsByTagName("html")[0];
-    sideFilterBar.style.transform="translateX(0%)"
-    sideFilterOverlay.style.transform="translateX(0%)"
+    sideFilter.style.visibility="visible";
+    sideFilterBar.style.transform="translateX(0%)";
+    sideFilterBtns.style.transform="translateX(0%)";
+    sideFilterOverlay.style.transform="translateX(0%)";
     html.style.overflow="hidden";
   }
 

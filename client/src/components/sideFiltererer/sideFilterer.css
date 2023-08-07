@@ -1,18 +1,21 @@
 .sideFilter{
     transition: all 2s;
     position: relative;
+    visibility: hidden;
 }
 .sideFilterBar{
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    height: 100%;
+    height: 92.3%;
     background-color: white;
     z-index: 10;
     width: 400px;
     transform: translateX(-100%);
     transition: all 0.5s linear;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .sideFilter .sideFilterBar .sideFilterHead{
     height: 50px;
@@ -24,11 +27,11 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .sideFilter .sideFilterBar .sideFilterContent{
-    max-height: 85vh;
-    overflow: auto;
+    height:max-content;
     padding: 15px;
+    padding-bottom: 0px;
 }
-.sideFilter .sideFilterBar .sideFilterContent .sideFilterBtns{
+/* .sideFilter .sideFilterBar .sideFilterContent .sideFilterBtns{
     width: 100%;
     height: 65px;
     position: relative;
@@ -51,10 +54,39 @@
     color: white;
     font-size: 16px;
     outline: none;
-}
-.sideFilter .sideFilterBar .sideFilterContent .sideFilterBtns .eachFilterBtn:hover{
+} */
+/* .sideFilter .sideFilterBar .sideFilterContent .sideFilterBtns .eachFilterBtn:hover{
     background-color:rgba(0,0,0,0.2);
+} */
+.sideFilter .sideFilterBtns{
+    width: 400px;
+    height:8%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background:white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    transform: translateX(-100%);
+    transition: all 0.5s linear;
 }
+.sideFilter .sideFilterBtns .eachFilterBtn{
+    height:90%;
+    width: 45%;
+    background-color:#131921f0;
+    margin: 0px 20px;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+/* .sideFilter .sideFilterBtns .eachFilterBtn:hover{
+    background-color:rgba(0,0,0,0.2);
+} */
 .sideFilter .sideFilterBar .sideFilterContent .eachFilter{
    display: flex;
    flex-direction: column;
@@ -70,7 +102,7 @@
     width: max-content;
 }
 .sideFilter .sideFilterBar .sideFilterContent .priceFilter div input{
-    width: 200px;
+    width: 150px;
     height: 5px;
 }
 .sideFilter .sideFilterBar .sideFilterContent .eachFilter .filterHead{
@@ -107,4 +139,29 @@
     right: 0;
     left: 0;
     transform: translateX(-100%);
+}
+
+@media screen and (max-width:386px){
+    .sideFilterBar{
+      width: 100%;
+    }
+    .sideFilter .sideFilterBtns{
+        width: 100%;
+    }
+}
+@media screen and (max-width:339px){
+    .sideFilter .sideFilterBar .sideFilterContent .priceFilter div input{
+        width: 115px;
+    }
+    .sideFilter .sideFilterBtns{
+        width: 100%;
+    }
+}
+@media screen and (max-width:308px){
+    .sideFilter .sideFilterBar .sideFilterContent .priceFilter div span{
+        padding: 0px 0px;
+    } 
+    .sideFilter .sideFilterBtns{
+        width: 100%;
+    }
 }
