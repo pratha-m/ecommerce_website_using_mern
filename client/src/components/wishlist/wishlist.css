@@ -201,7 +201,7 @@
     width: 115px;
   }
    
-  .description span {
+  .description .span {
     display: block;
     font-size: 14px;
     color: black;

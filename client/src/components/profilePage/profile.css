@@ -15,6 +15,7 @@
     width: 100px;
     border: 1px solid gray;
     border-radius: 50%;
+    overflow: hidden;
 }
 .profilePage .profileImage img{
     height: 80%;
@@ -28,6 +29,18 @@
 }
 .profilePage .profileField div{
     font-size: 20px;
+}
+.profilePage .profileField .skeletBox{
+    height: 40px;
+    width: 280px;
+    border-radius: 37px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border: 1px solid gray;
+    margin: 5px;
+    overflow: hidden;
 }
 .profilePage .profileField b{
     font-size: 35px;

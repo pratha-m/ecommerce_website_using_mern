@@ -3,23 +3,31 @@ import "../index.css"
 import {Link, useNavigate } from 'react-router-dom'
 import Axios from "axios";
 import "../searchProducts/searchProducts.css";
+// import Skeleton from 'react-loading-skeleton';
+// import SearchSkeletons from '../skeletons/SearchSkeletons';
 
 const Navbar = ({isLoggedIn,isAdmin,name,cartSize,wishlistProducts}) => {
   const [productSearchList,setProductSearchList]=useState([]);
+  // const [isLoadingSearch,setIsLoadingSearch]=useState(false);
   const navigate=useNavigate();
 
 
   const changeSearchQuery=(e)=>{  
       showSearchResults()
+      // setIsLoadingSearch(true);
       Axios.post(`${process.env.REACT_APP_BASE_URL}/filterproducts`,{searchquery:e.target.value})
         .then((result)=>{
            const {data}=result;
            const {success}=data;
            if(success){
              setProductSearchList(data.product);
+            //  setIsLoadingSearch(false);
            }
          })
-        .catch(()=>{console.log("Erorr in fetch")})
+        .catch(()=>{
+          // setIsLoadingSearch(false);
+          console.log("Erorr in fetch")
+        })
   }
   const removeSearchResults=()=>{
       let elements=document.querySelectorAll(".searchedItemsContainer");

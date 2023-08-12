@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../loader/Loader';
+// import Loader from '../loader/Loader';
 import SideFilters from '../sideFiltererer/SideFilters';
 import "./products.css";
+// import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import ProductSkeleton from '../skeletons/ProductSkeleton';
 
 const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,errorToast,setChangeNo}) => {
   const [isLoadingProducts,setIsLoadingProducts]=useState(false);
@@ -114,10 +117,13 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,erro
     html.style.overflow="hidden";
   }
 
+  // <div className='loader-wrapper'><Loader /></div>
+
   return (
     <div className='productPage'>
-      <SideFilters brands={brands} categories={categories} minPrice={minPrice} maxPrice={maxPrice} refetchProducts={refetchProducts} setRefetchProducts={setRefetchProducts} setProductList={setProductList}/>
+      <SideFilters brands={brands} categories={categories} minPrice={minPrice} maxPrice={maxPrice} refetchProducts={refetchProducts} setRefetchProducts={setRefetchProducts} setProductList={setProductList} isLoadingProducts={isLoadingProducts}/>
       {/* <div className="productPageHead">Products Category</div> */}
+       
       <form className="productPageTopBar">
          <button type='button' className='filterByBtn' onClick={openSideFilter}>Filtered By</button>
          {/* <select name="" id="sortBySelect">
@@ -128,7 +134,14 @@ const PRoducts = ({userId,isLoggedIn,wishlistProducts,changeNo,successToast,erro
          </select> */}
       </form>
       <div className="productsContainer">
-        {isLoadingProducts && <div className='loader-wrapper'><Loader /></div>}
+       
+
+        {isLoadingProducts && 
+         <>
+           <ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/>
+           <ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/>
+         </> 
+        }
         {!isLoadingProducts && productList.length===0 && <div className='loader-wrapper'>Sorry No Products Found</div>}
         {!isLoadingProducts && productList.map((eachProduct,index)=>{
           return(

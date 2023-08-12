@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./cartPage.css"
 import Axios from "axios"
-import Loader from '../loader/Loader';
+// import Loader from '../loader/Loader';
+// import Skeleton from 'react-loading-skeleton';
+import CartSkeletons from '../skeletons/CartSkeletons';
 
 const CartPage=({userId,setCartSize,errorToast,successToast,name,email})=>{
   const [cartProductList,setCartProductList]=useState([]);
@@ -197,13 +199,15 @@ const checkout=async(event)=>{
   }
   return (
     <div className="cartProductsContainer">
-      {/*  SHOPPING CART PRODUCTS  */}
      <div className="shopping-cart">
-       {/* <!-- Title --> */}
        <div className="title">
          Shopping Cart
        </div>
-       {isLoadingCart && <div className='loader-wrapper'><Loader/></div>}    
+       {isLoadingCart && 
+        <>
+         <CartSkeletons/><CartSkeletons/><CartSkeletons/><CartSkeletons/><CartSkeletons/>
+        </> 
+       }    
        {!isLoadingCart && cartProductList.length===0 && <div className='loader-wrapper'>Your Cart is Empty</div>}
        {!isLoadingCart && cartProductList.map((eachCartProduct,index)=>{
          return (
@@ -244,7 +248,11 @@ const checkout=async(event)=>{
       <div className="title">
         Saved For Latter
       </div>
-      {isLoadingSavedLater && <div className='loader-wrapper'><Loader/></div>}    
+      {isLoadingSavedLater && 
+        <>
+        <CartSkeletons/><CartSkeletons/><CartSkeletons/><CartSkeletons/><CartSkeletons/>
+       </> 
+      }    
       {!isLoadingSavedLater && saveForLatterProductList.length===0 && <div className='loader-wrapper'>No Save For Latter Products</div>}
       {!isLoadingSavedLater && saveForLatterProductList.map((eachCartProduct,index)=>{
         return (

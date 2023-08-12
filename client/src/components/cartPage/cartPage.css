@@ -409,17 +409,31 @@ body {
   height: 100%;
   border-radius: 15px;
 } 
+.image span{
+  height: 100px;
+  border-radius: 10px;
+}
+.image .placeImage{
+  height: 90px;
+  width: 100px;
+  overflow: hidden;
+  border-radius: 10px;
+}
 /* Let’s add some basic style to  product name and description. */
 .description {
   margin-right: 60px;
   width: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
  
-.description span {
+.description .span {
   display: block;
   font-size: 14px;
   color: black;
   font-weight: 400;
+  width: 80%;
 }
  
 
@@ -491,9 +505,19 @@ input:focus {
     flex-wrap: wrap;
     justify-content: center;
   }
+  .image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .image img {
     width: 50%;
   }
+  .image .placeImage{
+    height: 100px;
+    width: 80%;
+  }
+ 
   .image,
   .quantity,
   .description {

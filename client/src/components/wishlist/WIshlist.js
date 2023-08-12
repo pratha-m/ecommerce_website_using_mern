@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Axios from "axios"
 import "../cartPage/cartPage.css"
 import "./wishlist.css"
-import Loader from '../loader/Loader'
+// import Loader from '../loader/Loader'
+import WishlistSkeleton from '../skeletons/WishlistSkeleton'
 const WIshlist = ({userId,changeNo,setChangeNo}) => {
   const [isLoadingWishlists,setIsLoadingWishlists]=useState(true);
   const [wishlistProducts,setWishlistProducts]=useState([]);
@@ -45,7 +46,14 @@ const WIshlist = ({userId,changeNo,setChangeNo}) => {
       <div className="title">
         Wishlist
       </div>
-      {isLoadingWishlists && <div className='loader-wrapper'><Loader /></div>}
+      {isLoadingWishlists && 
+      <>
+        <WishlistSkeleton/>
+        <WishlistSkeleton/>
+        <WishlistSkeleton/>
+        <WishlistSkeleton/>
+        <WishlistSkeleton/>
+      </>}
       {!isLoadingWishlists && wishlistProducts.length === 0 && <div className='loader-wrapper'>No Wishlists Products</div>}
       {!isLoadingWishlists && wishlistProducts.map((eachWishlistProduct,index) => {
         return (
@@ -57,7 +65,7 @@ const WIshlist = ({userId,changeNo,setChangeNo}) => {
               <img src={`${eachWishlistProduct.image}`}  alt="" />
             </div>
             <div className="description">
-              <span>{eachWishlistProduct.name}</span>
+              <span className='span'>{eachWishlistProduct.name}</span>
             </div>
             <div className="total-price">Rs.{eachWishlistProduct.price}</div>
           </div>

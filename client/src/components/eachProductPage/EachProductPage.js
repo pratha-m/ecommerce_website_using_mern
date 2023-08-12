@@ -1,13 +1,15 @@
 import React, { useEffect,useState } from 'react'
 import "./eachProductPage.css"
-import { useLocation,useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Axios from "axios"
-import Loader from '../loader/Loader';
+// import Loader from '../loader/Loader';
+import ProductSkeleton from '../skeletons/ProductSkeleton';
+import Skeleton from 'react-loading-skeleton';
 // import {toast} from "react-toastify";
 
 const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,setChangeNo,name,email}) => {
     // const [productQuantity,setProductQuantity]=useState(1)
-    const location = useLocation();
+    // const location = useLocation();
     const [productData,setProductData]=useState({});
     const [isLoadingProduct,setIsLoadingProduct]=useState(true);
     const [isLoadingRelatedProduct,setIsLoadingRelatedProduct]=useState(true);
@@ -186,8 +188,61 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
     }
 
     return (
+      // <div className='loader-wrapper'><Loader/></div>
     <div>  
-      {isLoadingProduct && <div className='loader-wrapper'><Loader/></div>}
+  
+      {isLoadingProduct && 
+        <div className= "card-wrapper">
+        <div className= "card">
+      <div className= "product-imgs">
+        <div className= "img-display">
+          <div className= "img-showcase" id='img-showcase'>
+            <Skeleton height={300} width={350}/>
+          </div>
+        </div>
+        <div className= "img-select">
+          <div className= "img-item">
+            <Skeleton height={90} width={90}/>
+          </div>
+          <div className= "img-item">
+           <Skeleton height={90} width={90}/>
+          </div>
+          <div className= "img-item">
+            <Skeleton height={90} width={90}/>
+          </div>
+          <div className= "img-item">
+          <Skeleton height={90} width={90}/>
+          </div>
+        </div>
+      </div>
+      <div className= "product-content">
+        <h2 className= "product-title-skeleton"><Skeleton/></h2>
+        <p href = "#" className="product-link" style={{background:"transparent",padding:"0px"}}><Skeleton height={30} width={150}/></p>
+        <div className= "product-price">
+          <p className= "new-price"><Skeleton height={20} width={100}/></p>
+        </div>
+
+        <div className= "product-detail">
+          <ul>
+            <li style={{backgroundImage:"none",paddingLeft:"0px"}}><Skeleton height={20} width={150}/></li>
+            <li style={{backgroundImage:"none",paddingLeft:"0px"}}><Skeleton height={20} width={150}/></li>
+            <li style={{backgroundImage:"none",paddingLeft:"0px"}}><Skeleton height={20} width={150}/></li>
+            <li style={{backgroundImage:"none",paddingLeft:"0px"}}><Skeleton height={20} width={150}/></li>
+          </ul>
+        </div>
+
+        <div className= "purchase-info">
+          <button type = "button" className= "btn custom-button" style={{backgroundColor:"transparent",overflow:"hidden"}}>
+            <Skeleton height={50} width={150}/>
+          </button>
+          <button type = "button" className= "btn custom-button"  style={{backgroundColor:"transparent",overflow:"hidden"}}><Skeleton height={50} width={150}/></button>
+        </div>
+
+        
+      </div>
+    </div>
+      </div>  
+      }     
       {!isLoadingProduct && productData && <div className= "card-wrapper">
         <div className= "card">
         <div className= "product-imgs">
@@ -286,7 +341,11 @@ const EachProductPage = ({isLoggedIn,userId,errorToast,successToast,changeNo,set
 <div>
   <div className='relatedProductsHead'>Related Products</div>
   <div className="productsContainer">
-      {isLoadingRelatedProduct && <div className='loader-wrapper'><Loader/></div>}
+      {isLoadingRelatedProduct && 
+      <>
+         <ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/><ProductSkeleton/>
+           <ProductSkeleton/><ProductSkeleton/>  
+      </>}
       {!isLoadingRelatedProduct && productList.length===1 && <div className='loader-wrapper'>Sorry No Related Products Found</div>}
       {!isLoadingRelatedProduct && productList && productList.map((eachProduct,index)=>{
       return( 

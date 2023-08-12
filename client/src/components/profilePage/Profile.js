@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Axios from "axios";
 import "./profile.css";
+import Skeleton from 'react-loading-skeleton'
 
 const Profile = ({name,email,userId,successToast,errorToast}) => {
   const [newName,setNewName]=useState("");  
   const [newEmail,setNewEmail]=useState("");  
   const [newPassword,setNewPassword]=useState("");
   const [runUseEffect,setRunUseEffect]=useState(0);
+  const [isLoading,setIsLoading]=useState(true);
 
   const nameEdit=()=>{
      let inputName=document.getElementById("inputName");
@@ -66,6 +68,7 @@ const Profile = ({name,email,userId,successToast,errorToast}) => {
     }   
   }
   useEffect(()=>{
+     setIsLoading(true);
      Axios.get(`${process.env.REACT_APP_BASE_URL}/profile/${userId}`)
      .then((result)=>{
       const {data}=result;
@@ -76,30 +79,48 @@ const Profile = ({name,email,userId,successToast,errorToast}) => {
          inputName.value=name;
          setNewName(name);
          setNewEmail(email);
+         setIsLoading(false);
       }
       else{
+         setIsLoading(false);
          return;
       }
      })
-     .catch((result)=>{console.log("Error in getting user profile")});
+     .catch((result)=>{
+      setIsLoading(false);
+      console.log("Error in getting user profile")
+     });
   },[runUseEffect,userId]);
 
   return (
     <div className="profilePage">
-       <div className="profileImage"><img src="/images/profile.png" alt="" /></div>        
+       <div className="profileImage">
+       {
+       isLoading?<Skeleton circle={true} height={100} width={100}/>
+       :<img src="/images/profile.png" alt="" />
+       }
+       </div>  
        <div className="profileField profileName">
           <b>Name</b>
-          <input type='text' className='inputDisabledClass' onChange={(e)=>setNewName(e.target.value)} id='inputName' defaultValue={newName} disabled ></input>
+          {isLoading?
+           <div className='skeletBox'><Skeleton height={40} width={280}/></div>
+          :<input type='text' className='inputDisabledClass' onChange={(e)=>setNewName(e.target.value)} id='inputName' defaultValue={newName} disabled ></input>}
           <button className="editBtn" onClick={nameEdit}></button>
        </div>
        <div className="profileField profileEmail">
           <b>Email</b>
-          <input type='text' className='inputDisabledClass' onChange={(e)=>setNewEmail(e.target.value)} id='inputEmail' defaultValue={newEmail} disabled></input>
+          {
+            isLoading?<div className='skeletBox'><Skeleton height={40} width={280}/></div>
+            :<input type='text' className='inputDisabledClass' onChange={(e)=>setNewEmail(e.target.value)} id='inputEmail' defaultValue={newEmail} disabled></input>
+          }
           <button className='editBtn' onClick={emailEdit}></button>
        </div>
        <div className="profileField profilePassword">
            <b>Password</b>
-           <input type="password" className='inputDisabledClass'  onChange={(e)=>setNewPassword(e.target.value)} id='inputPassword' disabled/>
+           {
+            isLoading?<div className='skeletBox'><Skeleton height={40} width={280}/></div>
+            :<input type="password" className='inputDisabledClass'  onChange={(e)=>setNewPassword(e.target.value)} id='inputPassword' disabled/>
+           }
            <button className='editBtn' onClick={passwordEdit}></button>
        </div>
        {/* <div className="profileField profileAddress">

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Axios from "axios";
 import "./sideFilterer.css";
+import Skeleton from 'react-loading-skeleton';
 
-const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRefetchProducts,setProductList}) => {
+const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRefetchProducts,setProductList,isLoadingProducts}) => {
   const [maxPriceVal,setMaxPriceVal]=useState(maxPrice);
   const [filteredBrands,setFilteredBrands]=useState([]);
   const [filteredCategories,setFilteredCategories]=useState([]);
@@ -85,7 +86,17 @@ const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRef
         <form className="sideFilterContent">
             <div className="eachFilter" id="brandFilter">
               <div className="filterHead">Brands</div>
-              {brands && brands.map((eachBrand,index)=>{
+              {
+                isLoadingProducts &&
+                <> 
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                </>
+              }
+             
+              {!isLoadingProducts && brands && brands.map((eachBrand,index)=>{
                 return(
                 <div key={index}>
                  <input type="checkbox" name={eachBrand+index} id={eachBrand+index} value={eachBrand} onChange={()=>{updateFilteredBrands(eachBrand,index)}}/> 
@@ -96,15 +107,30 @@ const SideFilters = ({brands,categories,minPrice,maxPrice,refetchProducts,setRef
             </div>
             <div className="eachFilter priceFilter">
               <div className="filterHead">Price</div>
-              <div>
+              {
+                isLoadingProducts?
+                <> 
+                   <Skeleton height={20} width={200}/>
+                </>:
+                <div>
                <span className="minPrice">Rs.{minPrice}</span> 
                <input type="range" name="price" id="price" min={minPrice} max={maxPrice} defaultValue={maxPrice} onChange={(e)=>{setMaxPriceVal(e.target.value)}}/> 
                <span className="maxPrice">Rs.{maxPriceVal===0?maxPrice:maxPriceVal}</span> 
-              </div>
+                </div>
+              }
             </div>
             <div className="eachFilter" id="categoryFilter">
               <div className="filterHead">Category</div>
-              {categories && categories.map((eachCategory,index)=>{
+              {
+                isLoadingProducts &&
+                <> 
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                   <Skeleton height={20} width={170}/>
+                </>
+              }
+              {!isLoadingProducts && categories && categories.map((eachCategory,index)=>{
                 return (
                  <div key={index}>
                   <input type="checkbox" name={eachCategory+index+"category"} id={eachCategory+index+"category"} value={eachCategory} onChange={()=>{updateFilteredCategories(eachCategory,index)}}/> 
